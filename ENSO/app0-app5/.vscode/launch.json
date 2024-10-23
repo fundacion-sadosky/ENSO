@@ -1,0 +1,73 @@
+{
+  // Use IntelliSense to learn about possible attributes.
+  // Hover to view descriptions of existing attributes.
+  // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "app0app5",
+      "type": "python",
+      "request": "launch",
+      "module": "hopeit.server.web",
+      "console": "integratedTerminal",
+      "args": [
+        "--port=8026",
+        "--start-streams",
+        "--config-files=app0-app5/config/server-slave.json,plugins/platform-auth/config/1x0.json,app0-app5/config/app0-app5.json,app0-app5/config/config-manager.json",
+        "--api-file=app0-app5/config/openapi.json",
+        // "--enabled-groups=m,w"
+        "--enabled-groups=m,w,p"
+      ],
+      "env": {
+        "REDIS_URL": "redis://localhost:6379",
+        "LOGS_LEVEL": "INFO",
+        "LOGS_PATH": "../logs",
+        "MONGO_URL": "mongodb://rootuser:rootpass@localhost:27017",
+        "MONGO_DB": "puedb",
+        "APP0_ADMIN_API_URL": "http://localhost:8021",
+        "APP0_ADMIN_URL": "http://localhost/admin",
+        "OBJECT_STORAGE_ACCESS_KEY_ID": "minio",
+        "OBJECT_STORAGE_SECRET_ACCESS_KEY": "minio123",
+        "OBJECT_STORAGE_ENDPOINT_URL": "http://localhost:9000",
+        "OBJECT_STORAGE_SSL": "false",
+        "MQTT_HOST": "broker.hivemq.com",
+        "MQTT_PORT": "1883",
+        "CORS_ORIGIN": "*",
+        "DOMAIN": "localhost"
+      },
+      "cwd": "${workspaceFolder}"
+    },
+    {
+      "name": "app0app5p",
+      "type": "python",
+      "request": "launch",
+      "module": "hopeit.server.web",
+      "console": "integratedTerminal",
+      "args": [
+        "--port=8036",
+        "--start-streams",
+        "--config-files=app0-app5/config/server-slave.json,plugins/platform-auth/config/1x0.json,app0-app5/config/app0-app5.json,app0-app5/config/config-manager.json",
+        "--api-file=app0-app5/config/openapi.json",
+        "--enabled-groups=p"
+      ],
+      "env": {
+        "REDIS_URL": "redis://localhost:6379",
+        "LOGS_LEVEL": "INFO",
+        "LOGS_PATH": "../logs",
+        "MONGO_URL": "mongodb://rootuser:rootpass@localhost:27017",
+        "MONGO_DB": "puedb",
+        "APP0_ADMIN_API_URL": "http://localhost:8021",
+        "APP0_ADMIN_URL": "http://localhost/admin",
+        "OBJECT_STORAGE_ACCESS_KEY_ID": "minio",
+        "OBJECT_STORAGE_SECRET_ACCESS_KEY": "minio123",
+        "OBJECT_STORAGE_ENDPOINT_URL": "http://localhost:9000",
+        "OBJECT_STORAGE_SSL": "false",
+        "MQTT_HOST": "broker.hivemq.com",
+        "MQTT_PORT": "1883",
+        "CORS_ORIGIN": "*",
+        "DOMAIN": "localhost"
+      },
+      "cwd": "${workspaceFolder}"
+    }
+  ]
+}

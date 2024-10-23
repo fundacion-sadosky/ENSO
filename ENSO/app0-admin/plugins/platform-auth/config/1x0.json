@@ -1,0 +1,92 @@
+{
+  "$schema": "https://raw.githubusercontent.com/hopeit-git/hopeit.engine/master/engine/config/schemas/app-config-schema-draftv6.json",
+  "app": {
+    "name": "platform-auth",
+    "version": "1.0"
+  },
+  "engine": {
+    "import_modules": [
+      "app0.platform.auth"
+    ],
+    "cors_origin": "${CORS_ORIGIN}"
+  },
+  "settings": {
+    "{events.streams.api.mail_processor.write_stream.name}": {
+      "target_max_len": 1000,
+      "throttle_ms": 10,
+      "batch_size": 5
+    }
+  },
+  "env": {
+    "env_config": {
+      "app0_admin_url": "${APP0_ADMIN_URL}",
+      "mail_app_from": "${MAIL_APP_FROM}"
+    },
+    "auth": {
+      "access_token_expiration": 60000000,
+      "refresh_token_expiration": 3600,
+      "access_token_renew_window": 5
+    },
+    "fs": {
+      "recover_store": "./recover"
+    },
+    "mongodb": {
+      "conn_str": "${MONGO_URL}",
+      "dbname": "${MONGO_DB}"
+    },
+    "platform_context": {
+      "app0_admin_url": "${APP0_ADMIN_URL}",
+      "mail_app_from": "${MAIL_APP_FROM}"
+    }    
+  },
+  "events": {
+    "login": {
+      "type": "GET",
+      "plug_mode": "Standalone",
+      "auth": [
+        "Basic"
+      ]
+    },
+    "logout": {
+      "type": "GET",
+      "plug_mode": "Standalone",
+      "auth": [
+        "Unsecured"
+      ]
+    },
+    "refresh": {
+      "type": "GET",
+      "plug_mode": "Standalone",
+      "auth": [
+        "Refresh"
+      ]
+    },
+    "validate": {
+      "type": "GET",
+      "plug_mode": "Standalone",
+      "auth": [
+        "Bearer"
+      ]
+    },
+    "reset": {
+      "type": "POST",
+      "plug_mode": "Standalone",
+      "auth": [
+        "Unsecured"
+      ],
+      "write_stream": {
+        "name": "stream_mail_processor"
+      }
+    },
+    "recovery": {
+      "type": "POST",
+      "plug_mode": "Standalone",
+      "auth": [
+        "Unsecured"
+      ],
+      "write_stream": {
+        "name": "stream_mail_processor"
+      }
+    }
+  }
+}

@@ -1,0 +1,223 @@
+id,name,barcode,cavidades,maquina,maquina_alternativa,operarios
+1,Fco 160cc F 1/3 Presión,1650130,1,5,19,1.0
+2,Fco 180cc F 1/2,16501201,2,5,19,1.0
+3,Fco 250cc F 1/1 ,1650110,1,5,19,1.0
+4,Fco 370cc F 1 ,1650011,2,5,19,1.0
+5,Fco 520cc F 2 ,1650020,1,5,19,1.0
+6,Fco 720cc PVC F3/2,1650031,2,5,19,1.0
+7,Fco 1050cc F 5 Redondo ,1100050,1,7,No,1.0
+8,Fco 1050cc F 5 Redondo Blanco,1100052,1,7,No,1.0
+9,Fco 1500cc F 9 Redondo CON ASA Ø70,1650090,2,7,No,1.0
+10,Fco 1500cc F 9/2 Redondo ,1100920,2,7,No,1.0
+11,Fco 3050cc F 10/3 Redondo Rosca,1130011,2,7,No,1.0
+12,Fco 3050cc F 10/2 Redondo Presión Blanco,1100103,2,7,No,1.0
+13,Fco 3050cc F 10/2 Redondo Presión,10010010,2,7,No,1.0
+14,Fco 3050 Cc F 10 Cuadrado Presión,2257,2,7,No,1.0
+15,Fco 7500cc F11/2 Cuadrado Presión PVC ,8750140,2,7,No,1.0
+16,Fco 7500cc F11 Cuadrado Presión PP,8750110,2,7,No,1.0
+17,Especiero 230cc T/Rosca,1410250,2,7,No,1.0
+18,Especiero 230cc Pvc T/Rosca Molinillo,1411250,2,7,No,1.0
+19,Especiero 370cc Pvc T/Rosca D62,1410380,2,26,No,1.0
+20,Bot T18 18cc Pvc Mod Zucardi Verde Olivo,1400265326501,4,26,No,1.0
+21,Bot T18 25cc Pvc Mod cuadrado Cristal,1402501,4,5,No,1.0
+22,Bot T18 25cc Pvc Mod cuadrado Verde Olivo,1402504,4,5,No,1.0
+23,Bot T18 30cc Pvc Mod Esencia Vainilla,1400360,4,5,No,1.0
+24,Bot T18 50cc Pvc Mod Slim Rosca Cristal,1400560,4,4,No,1.0
+25,Bot T18 50cc Pvc Mod Slim Rosca Verde Olivo,1400567,4,4,No,1.0
+26,Bot T28 70cc Pvc Farmacologica Cristal,1400740,2,4,No,1.0
+27,Bot T28 70cc Pvc Farmacologica Ambar,1400746,2,4,No,1.0
+28,Bot 90cc Mod JAMER Blanco,1205050800602,2,4,No,1.0
+29,Bot T28 100cc Pvc Farmacologica Cristal,1401040,2,4,No,1.0
+30,Bot T28 100cc Pvc Farmacologica Gotero Ambar,1401056,2,5,No,1.0
+31,Bot T18 110 cc Pvc Mod Esencia Vainilla,1400160,4,5,No,1.0
+32,Bot T28 125cc Pvc Farmacologica Cristal,1401240,2,5,No,1.0
+33,Bot T28 125cc Pvc Farmacologica Ambar,1401246,2,19,No,1.0
+34,Bot T28 150cc Pvc Farmacologica Cristal,1401540,2,19,No,1.0
+35,Bot T28 150cc Pvc Farmacologica Ambar,1401546,2,4,No,1.0
+36,Bot T29 165cc Mod 05/i PVC Dosif Cristal,1202050,2,19,No,1.0
+37,Bot 200cc Upa Lala Rosca Blanco,1632002,2,19,No,1.0
+38,Bot 200cc Upa Lala Rosca Cristal,1632000,2,19,No,1.0
+39,Bot 250cc PP Mod Aromatizante Guma,8802501,2,19,No,1.0
+40,Bot 390 cc Mod Grido Blanco,1205050800601,2,19,No,1.0
+41,Bot 400 cc Mod JAMER Blanco,1205051800602,2,5,No,1.0
+42,Bot 500cc Pulv. PVC Mod Viejo Cristal,1280500,1,5,No,1.0
+43,Bot 500cc Pulv. PVC Mod Viejo Blanco,1280502,1,5,No,1.0
+44,Bot 660 cc Mod JAMER PVC Blanco,1205051800603,2,19,No,1.0
+45,Bot 1000cc Mod Lavandina ECO Amarillo,7010003,2,19,No,1.0
+46,"Bot 1,00 Polietileno Eco-Lubricante ECO Negro",70100004,2,5,No,1.0
+47,Bot 2.00 Lavandina ECO Amarillo,7020003,2,5,No,1.0
+48,"Bot T 29 0,10 Pet Mod PORTA Nuevo ",6201230,3,5,No,1.0
+49,Bot 160cc Dosificador Pomo 1/3 PET,6416010,3,7,No,1.0
+50,"Bot T 29 0,19 Pet Mod Vanoli",6201901037901,4,26,No,1.0
+51,"Bot T 29 0,20 Pet Mod Slim Cristal",6202040,3,10,No,1.0
+52,"Bot T 29 0,20 Pet Mod Slim Cristal - AGD FASON",6202240605601,3,10,No,1.0
+53,"Bot T 29 0,20 Pet Mod Slim Verde Olivo",6202545,3,10,No,1.0
+54,"Bot T 28 0,25 Pet Mod 02 (campanita)",6402520,2,18,No,2.0
+55,"Bot T 28 0,25 Pet Mod Farmacologica Cristal",6402540,2,10,No,1.0
+56,"Bot T 28 0,25 Pet Mod Farmacologica Ambar",6402740,2,10,No,1.0
+57,"Bot T 29 0,25 Pet mod Osito ",6202510,3,10,No,1.0
+58,"Bot T 28 0,25 Pet mod Osito ",6402510,3,12,No,1.0
+59,"Bot T 29 0,25 Pet Mod Slim Cristal",6203040,3,15,No,1.0
+60,"Bot T 29 0,25 Pet Mod Slim Verde Olivo",6203045,3,11,No,1.0
+61,Bot T 29 0.25 Pet Mod Oliovita Verde Olivo,6202555,3,11,No,1.0
+62,Bot T 29 0.25 Pet Mod Solfrut Verde Olivo,6202135855201,3,10,No,1.0
+63,"Bot T29 0,25 Mod Lemon VANOLI",6202544037901,3,10,No,1.0
+64,"Bot T29 0,25 Aceite Cuadrado Mod Nuevo Cristal",6202030,3,10,No,1.0
+65,"Bot T29 0,25 Aceite Cuadrado Mod Nuevo Verde Olivo",6202035,3,10,No,1.0
+66,Bot 250cc Dosificador Pomo 1/1 PET,6402530,3,10,No,1.0
+67,"Bot T 29 0,27 Pet Salsa Mod Vanoli",6202701037901,4,10,No,1.0
+68,Bot T 28 0.273 Pet Mod Ultra Guma ,6403000148201,4,10,No,1.0
+69,"Bot T 29 0,33 Pet Mod 01 / Dosificador Chato",6204010,3,10,No,1.0
+70,"Bot T 28 0,35 Pet Gaseosa Mod 01 Cristal",6403010,2,10,No,1.0
+71,"Bot T 29 0,35 Pet Mod Vanoli Cristal",6203501037901,4,10,No,1.0
+72,"Bot T 29 0,35 Pet Mod Vanoli Ambar",6203507037901,4,18,No,1.0
+73,"Bot T 29 0,35 Pet Mod DELPACK Cristal 26 gramos",6403301,4,18,No,1.0
+74,Bot 360cc Dosificador Pomo 1 PET,6436010,3,10,No,1.0
+75,"Bot T 28 0,50 Pet Mod 01 Agua-soda ",6405010,2,11,No,1.0
+76,"Bot T 28 0,50 Pet ROSCA CORTA Mod 03",6405031,4,18,No,1.0
+77,"Bot T 28 0,50 Pet Mod 03 ",6405030,4,18,No,1.0
+78,Bot T28 0.50 Pet Desodorante Mod Nuevo,6405330,4,18,No,1.0
+79,Bot T28 0.50 Pet Mod 03 Agua Lagoa - FASON,6405030150601,4,10,No,1.0
+80,"Bot T 28 0,50 Pet Mod 11",6405110,4,11,No,1.0
+81,"Bot T 28 0,50 Pet Mod Farmacologica Cristal",6405040,3,18,No,1.0
+82,"Bot T 28 0,50 Pet Mod Farmacologica Blanco",6405042,3,18,No,1.0
+83,"Bot T 28 0,50 Pet Mod Farmacologica Ambar",6405740,3,18,No,1.0
+84,"Bot T 28 0,50 Pet Mod Slim Cristal INCLUYE INSERTO",6405400,3,18,No,1.0
+85,"Bot T 28 0,50 Pet Mod Slim Verde Olivo INCLUYE INSERTO",6405044,3,18,No,1.0
+86,"Bot T 28 0,50 Pet Mod Slim Azul SIN INSERTO",6405401,3,18,No,1.0
+87,Bot T 28 0.50 Pet Mod Beer,6405647,2,11,No,1.0
+88,Bot T 29 0.50 Pet Mod Oliovita Verde Olivo,6205054,3,18,No,1.0
+89,"Bot T 29 0,50 Pet Mod Nuevo Aceite Redondo Cristal",6205330,3,18,No,1.0
+90,"Bot T 38 0,50 Mod 03 Nuevo Cristal",6405050,3,18,No,1.0
+91,"Bot T 38 0,50 Modelo VOSS Cristal",6405060,3,18,No,1.0
+92,"Bot T 38 0,50 Modelo VOSS Cristal Reforzado",6405061,3,18,No,1.0
+93,"Bot T29 0,50 Mod Lemon VANOLI",6205044037901,3,18,No,1.0
+94,"Bot T29 0,50 Aceite Cuadrado Mod Nuevo Cristal",6205110,3,18,No,1.0
+95,"Bot T29 0,50 Aceite Cuadrado Mod Nuevo Verde Olivo",6205115,3,18,No,1.0
+96,Bot T29 0.50 Pet Mod Solfrut Nuevo Verde Olivo,6205135855201,3,18,No,1.0
+97,"Bot T29 0,50 Pet Vinagre Mod Nuevo Verde Limón",6205064,3,18,No,1.0
+98,"Bot T29 0,50 Pet Vinagre Mod Nuevo Cristal",6205060,3,18,No,1.0
+99,Bot T 28 0.545 Pet Mod Ultra Guma Cristal,6404501148201,4,18,No,1.0
+100,"Bot T 28 0,60 Pet Mod Detergente Cristal Push pull",6406020,4,18,No,1.0
+101,"Bot T 28 0,60 Pet Mod 03 Cristal",6406030,4,18,No,1.0
+102,Bot T28 0.60 Pet Mod 03 Agua Lagoa - FASON,6406030320301,4,18,No,1.0
+103,Bot T28 0.60 Pet Mod 03 Agua SPORT Lagoa - FASON,6406030320302,4,18,No,1.0
+104,"Bot T 38 0,60 Mod 03 Nuevo Cristal",6406040,4,18,No,1.0
+105,Bot T 28 0.73 Pet Mod Guma Cristal,6408010,2,18,No,1.0
+106,"Bot T 28 0,75 Pet Mod Detergente Nuevo Cristal Push Pull",6407500,2,18,No,1.0
+107,Bot T 28 0.80 Pet Mod Jabon Liquido,6408020,2,12,No,1.0
+108,"Bot T29 0,83 Aceite Mod Nuevo Agro Aceitera",6208330,4,12,No,1.0
+109,"Bot T 28 0,90 Pet Mod Desod Nueva ",6409230,4,12,No,1.0
+110,"Bot T 29 0,90 Pet Mod Aceite Nuevo Verde Olivo",6209234,4,12,No,1.0
+111,"Bot T 29 0,90 Pet Mod Aceite Nuevo Cristal",6209230,4,12,No,1.0
+112,Bot T29 0.90 Mod Nv Sin etiqueta Norpan,6209230567402,4,12,No,1.0
+113,Bot T28 0.90 Pet Mod 03 Des .x 1028 bot,6409030,4,12,No,1.0
+114,"Bot T 28 0,90 Pet Mod Cleaning Cristal",6409060,2,12,No,1.0
+115,"Bot T 28 0,92 Pet Mod 12 Sidra Verde",6409120,2,12,No,1.0
+116,"Bot T 28 0,95 Pet Mod 12 Vino Verde",6409524,2,12,No,1.0
+117,Bot T28 0.95 Pet Mod 12 Vino Cristal,6409520,2,12,No,1.0
+118,"Bot T 28 1,00 Pet Mod Desod Nvo ",6410230,2,12,No,1.0
+119,"Bot T 29 1,00 Pet Mod Aceite Nuevo",6210230,2,12,No,1.0
+120,"Bot T 28 1,00 Pet Mod 12 Borgoña Verde",6409124,2,11,No,1.0
+121,"Bot T 28 1,00 Pet Mod Cleaning Ambar",6410067,2,11,No,1.0
+122,"Bot T 28 1,00 Pet Mod Cleaning Cristal",6410060,2,11,No,1.0
+123,"Bot T28 1,00 Pet Mod Cleaning 40gr Cristal Morales",6410060029002,2,11,No,1.0
+124,Bot T 28 1.00 Pet Mod Sport Cristal ,6410050,4,11,No,1.0
+125,"Bot T 28 1,00 Pet Mod 02 Amargo Ambar",6410027,3,11,No,1.0
+126,"Bot T 28 1,00 Pet Mod 02 Amargo Cristal",6410020,3,11,No,1.0
+127,Bot T28 1.00 Pet Gaseosa Mod 01 Cristal,6410010,3,11,No,1.0
+128,"Bot T 28 1,00 Pet Mod Beer ambar",6410016,2,17,No,1.0
+129,"Bot T 28 1,00 Pet Mod Slim Cristal - INCLUYE INSERTO",6410040,2,17,No,1.0
+130,"Bot T 28 1,00 Pet Mod Slim Verde Olivo - INCLUYE INSERTO",6410044,2,17,No,1.0
+131,"Bot T 28 1,00 Pet Mod Slim Verde Limon GAROTUC-C/INSERTO",64100044179601,2,17,No,1.0
+132,"Bot T 28 1,00 Pet Manija Insinuada",6410110,2,17,No,1.0
+133,Bot T 45 1.00 Pet Mod SPRAYTEC Verde Olivo Sin tapa,6410065,2,17,No,1.0
+134,Bot T 45 1.00 Pet Mod Agro Cristal Incluye tapa inducción,6410070,2,17,No,1.0
+135,Bot T 45 1.00 Pet Mod Agro Verde Olivo Incluye tapa inducción,6410075,2,17,No,1.0
+136,Bot T 45 1.00 Pet Mod Agro Ambar Incluye tapa inducción,6410076,2,17,No,1.0
+137,Bot T 45 1.00 Pet Mod Agro Blanco Incluye tapa inducción,6410072,2,17,No,1.0
+138,Bot T 29 1.00 Pet Mod Oliovita Verde Olivo,6210044855201,3,17,No,1.0
+139,Bot T29 1.00 Pet Aceite Cuadrado Mod Nuevo Cristal,6210210,3,17,No,1.0
+140,Bot T29 1.00 Pet Aceite Cuadrado Mod Nuevo Verde Olivo,6210315,3,18,No,1.0
+141,Bot T29 1.00 Pet Pinciroli Mod Nuevo Cristal,6210050,3,12,No,1.0
+142,"Bot T 28 1,25 Pet Sifon Mod CASTELLANA",641251000701,2,18,No,1.0
+143,"Bot T 28 1,25 Pet Sifon Mod UEB ",6415010006701,2,18,No,1.0
+144,"Bot T28 1,50 Pet Mod 03 Jugo Cristal - FASON",6415030,3,18,No,1.0
+145,"Bot T 28 1,50 Pet Mod 15 Cristal Petaloide",6415150,2,18,No,1.0
+146,"Bot T 28 1,50 Pet Mod 14 Cristal",6415140,2,18,No,1.0
+147,Bot T28 1.50 Pet Mod 14 Agua Lagoa - FASON,6415140320301,2,18,No,1.0
+148,Bot T 28 1.50 Pet Mod 12 Borgoña ,6415124,2,18,No,1.0
+149,"Bot T 28 1,50 Pet Mod 11 Sidra",6415114,2,18,No,1.0
+150,"Bot T 28 1,50 Pet Mod 01 Gasificado Cristal",6415010,2,18,No,1.0
+151,"Bot T 29 1,50 Pet Mod Aceite Nuevo Cristal",6215230,3,18,No,1.0
+152,"Bot T 28 1,50 Pet Mod Beer",6415647,2,18,No,1.0
+153,Bot T 28 1.75 Pet Mod 01 Sifón Petaloide Azul,6420011,2,18,No,1.0
+154,Bot T 28 1.75 Pet Mod 01 Sifón Petaloide Cristal,6420012,2,18,No,1.0
+155,"Bot T 28 1,80 Pet Mod 03 Cristal",6418030,2,18,No,1.0
+156,"Bot T 28 2,00 Pet Mod 03 Cristal",6420030,2,18,No,1.0
+157,"Bot T 28 2,00 Pet Mod Beer",6420647,2,18,No,1.0
+158,"Bot T 28 2,25 Pet Mod 01 Gasif Verde",6422014,2,18,No,1.0
+159,"Bot T 28 2,25 Pet Mod 01 Gasif Cristal",6422010,2,18,No,1.0
+160,"Bot T 28 2,25 Pet Mod Sifon Base Petalo Azul",6422011,2,18,No,1.0
+161,Bot T28 3.00 Pet Mod 03 Cristal A/azul,6430120,2,15,No,1.0
+162,"Bot T28 3,25 Pet Mod Rumipal Cristal",6430100784901,2,15,No,1.0
+163,Bot T 36 2.00 Pet Mod Aceite Cuadrado insinuada Verde Olivo,6220334,2,21,27,1.0
+164,Bot T 36 2.00 Pet Mod Aceite Cuadrado insinuada Cristal,6220330,2,21,27,1.0
+165,Bid T 45 2.00 Pet Mod 03 Cristal Manija incrustada Verde Oliv,6420430,2,21,27,1.0
+166,BID T 45 2.00 Pet Mod Growler CON MANIJA AMBAR,6420016,2,21,27,1.0
+167,Bid T36 2.00 Pet Mod 03 Cristal MI Verd Oli,6220020,2,21,27,1.0
+168,Bid T 36 2.00 Pet Mod 03 MANIJA INCRUSTADA Verde Olivo,6220025,2,21,27,1.0
+169,Bot T 36 3.00 Pet Mod 01 oil MANIJA INSINUADA,6230010,2,21,27,1.0
+170,Bot T36 3.00 Pet Mod 01 Sin etiqueta Norpan,6230010567402,2,21,27,1.0
+171,Bid T 45 3.00 Pet Mod 03 MANIJA INCRUSTADA,6430430,2,21,27,1.0
+172,Bid T 36 3.00 Pet Mod 02 CRISTAL manija incrustada Verde Oliv,6230420,2,21,27,1.0
+173,Bid T 45 4.00 Pet Mod 03 CON ASA,6440300,2,21,27,1.0
+174,Bid T 45 4.00 Pet Mod 03 Cristal Manija inc AZUL ,6440130,2,21,27,1.0
+175,Bid T 45 4.50 Pet Mod 03 CUADRADO CON ASA Verde,6450431,2,21,27,1.0
+176,"Bid T 45 4,75 Pet Mod Damajuana Verde Olivo ASA ROJA",6447056,2,21,27,1.0
+177,"Bid T 45 4,75 Pet Mod Damajuana Verde Olivo ASA Cristal",6447001,2,21,27,1.0
+178,"Bid 5,00 Lt Pet Mod 02 Cristal M/Azul",6450120,,21,27,1.0
+179,"Bid T 45 5,00 Pet Mod 02 CON MANIJA - VERDE OLIVO",6450425,2,21,27,1.0
+180,Bid T 45 5.00 Pet Mod 03 pico corto Cristal CON ASA Cristal,6450400,2,21,27,1.0
+181,Bid T 45 5.00 Pet Mod 03 pico corto Verde Olivo CON ASA Verde,6450405,2,21,27,1.0
+182,Bid T45 5.00 Mod 03 Sin etiqueta Norpan,6450300567402,2,21,27,1.0
+183,Bid T 45 5.00 Pet Mod 03 pico largo Cristal CON ASA Cristal,6450300,2,21,27,1.0
+184,Bid T 45 5.00 Pet Mod 03 pico largo ambar CON ASA Cristal,6450036,2,21,27,1.0
+185,Bid T 45 5.00 Pet Mod Chop cassaro pico largo,6450018470202,2,21,27,1.0
+186,Bid T 45 6.00 Pet Mod 03 CON ASA Cristal,6460400,2,21,27,1.0
+187,Bid T 45 6.50 Pet Mod 03 CON ASA,6465030,2,21,27,1.0
+188,"Bid T 45 8,00 Pet Mod 01 Redondo azul CON ASA azul",6480112,1,16,No,1.0
+189,"Bid T 45 10,00 Pet Mod 01 Redondo CON ASA",6410021,1,16,No,1.0
+190,Bid T45 10.00 Pet Mod 01 Agua Ideal,6410021100801,1,16,No,1.0
+191,"Bid T 45 10,00 Pet Mod 03 Cuadrado CON ASA",6410001,1,16,No,1.0
+192,"Bid T 45 10,00 Pet Mod Cassaro",6410026470202,1,16,No,1.0
+193,Fco 180cc   P01/2 I/S T60 Rosca ,6451200,6,28,29,1.0
+194,Fco 400cc   P01 I/S T60 Rosca ,6435030,6,28,29,1.0
+195,Fco 750cc   P03 I/S T77 Rosca,6475030,5,28,29,1.0
+196,Fco 1500cc P09 I/S T77 Rosca,6450090,4,28,29,1.0
+197,Fco 3000cc P10 I/S T100 Rosca,6400100,3,28,29,1.0
+198,BOT. 750 CC Vino VERDE ROSCA,6409515,6,28,29,1.0
+199,ECO BID. 5 LTS TOP HANDLE  Blanco Peletizado,7050010,2,31,No,1.0
+200,ECO BID. 5 LTS TOP HANDLE  Blanco Peletizado REFORZADO,7050015,2,31,No,1.0
+201,ECO BID. 5 LTS TOP HANDLE  Amarillo Peletizado,7050012,2,31,No,1.0
+202,Bid T38 5.00 ECO-BIDON Negro TOP HANDLE,7050011,2,31,No,1.0
+203,BID 5 LTS TOP VIRGEN. TOP HANDLE  ,7050013,2,31,No,1.0
+204,ECO BID. 5 LTS  BLEND 85/15 APILABLE Blanco,7050014,2,31,No,1.0
+205,ECO BID. 10 LTS  BLEND 85/15 APILABLE Blanco,7010310,2,31,No,1.0
+206,ECO BID. 20 LTS  BLEND 85/15 1050 GRS,7020310,2,23,No,1.0
+207,Bid T64 20.00 1050gr ECO-BIDON Amarillo,7020313,2,23,No,1.0
+208,Bid T64 20.00 ECO-Bidon 1050gr Azul,7020306,2,23,No,1.0
+209,Bid T64 20.00 ECO-Bidon 1050gr Gris,7020324,2,23,No,1.0
+210,Bid T64 20.00 ECO-Bidon 1050gr Negro,7020319,2,23,No,1.0
+211,Bid T64 20.00 ECO-Bidon 1050gr Rojo,7020318,2,23,No,1.0
+212,ECO BID. 20 LTS  BLEND 85/15 1250 GRS,7020311,2,23,No,1.0
+213,Bid T64 20.00 ECO-Bidon 1250gr Tricapa Azul,7020316,2,23,No,1.0
+214,Bid T64 20.00 PEAPM 1250gr ECO-Bid Amarillo,7020315,2,23,No,1.0
+215,Bid T64 20.00 PEAPM 1250gr ECO-Bid Rojo,7020320,2,23,No,1.0
+216,BID 20 LTS VIRGEN. 1100 GRS,7020330,2,23,No,1.0
+217,BID 20 LTS VIRGEN. 700 GRS,7020307,2,23,No,1.0
+218,ECO BID. 25 LTS  BLEND 85/15 1250 GRS,7025010,2,23,No,1.0
+219,Tambor 85 lts Tapa ø240- Rejilla - Oring,3223,1,22,No,1.0
+220,Tambor 240 lts Tapa ø240 - Rejilla - Oring,2574,1,22,No,1.0
+221,Tambor L-Ring Tapa ø63 x 2 - Oring x 2,3100,1,22,No,1.0
+222,"Tambor L-Ring Tapa ø63 x 2 - Oring x 2 Reforzado 8,6Kgs",3102,1,22,No,1.0

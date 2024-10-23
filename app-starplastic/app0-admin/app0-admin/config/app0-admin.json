@@ -1,0 +1,241 @@
+{
+    "$schema": "https://raw.githubusercontent.com/hopeit-git/hopeit.engine/master/engine/config/schemas/app-config-schema-draftv6.json",
+    "app": {
+        "name": "app0-admin",
+        "version": "1.0"
+    },
+    "plugins": [
+        {
+            "name": "platform-auth",
+            "version": "1.0"
+        }
+    ],
+    "engine": {
+        "import_modules": [
+            "app0.admin"
+        ],
+        "cors_origin": "${CORS_ORIGIN}"
+    },
+    "app_connections": {
+        "admin_conn": {
+            "name": "app0-admin",
+            "version": "1.0",
+            "client": "hopeit.apps_client.AppsClient"
+        }
+    },
+    "settings": {
+        "admin_conn": {
+            "connection_str": "${APP0_ADMIN_API_URL}"
+        },
+        "s3_store": {
+            "endpoint_url": "${OBJECT_STORAGE_ENDPOINT_URL}",
+            "aws_access_key_id": "${OBJECT_STORAGE_ACCESS_KEY_ID}",
+            "aws_secret_access_key" : "${OBJECT_STORAGE_SECRET_ACCESS_KEY}",
+            "use_ssl": "${OBJECT_STORAGE_SSL}"
+        },
+        "bucket_images": {            
+            "bucket": "platform-images",
+            "chunk_size": 16384
+        },
+        "bucket_docs": {            
+            "bucket": "platform-docs",
+            "chunk_size": 16384
+        }
+    },
+    "env": {
+        "env_config": {
+            "app0_admin_url": "${APP0_ADMIN_URL}",
+            "mail_app_from": "${MAIL_APP_FROM}"
+        },
+        "mongodb": {
+            "conn_str": "${MONGO_URL}",
+            "dbname": "${MONGO_DB}"
+        },
+        "email_templates": {
+            "templates_folder": "./email/templates"
+        },
+        "fs": {
+            "recover_store": "./recover",
+            "mail_store": "./store_mail"
+        },
+        "bucket_images": {            
+            "bucket": "platform-images",
+            "chunk_size": 16384
+        },
+        "bucket_docs": {            
+            "bucket": "platform-docs",
+            "chunk_size": 16384
+        }
+    },
+    "events": {
+        "api.enum_list": {
+            "type": "GET",
+            "auth": ["Bearer"]
+        },
+        "api.app_get": {
+            "type": "GET",
+            "auth": ["Bearer"]
+        },
+        "api.app_list": {
+            "type": "POST",
+            "auth": ["Bearer"]
+        },
+        "api.app_save": {
+            "type": "POST",
+            "auth": ["Bearer"]
+        },
+        "api.app_file_upload": {
+            "type": "MULTIPART",
+            "auth": [
+                "Bearer"
+            ],
+            "setting_keys": [
+                "bucket_docs",
+                "s3_store"
+            ]
+        },
+        "api.app_file_get": {
+            "type": "GET",
+            "auth": ["Bearer"],
+            "setting_keys": [
+                "bucket_docs",
+                "s3_store"
+            ]
+        },
+        "api.role_save": {
+            "type": "POST",
+            "auth": ["Bearer"]
+        },
+        "api.role_get": {
+            "type": "GET",
+            "auth": ["Bearer"]
+        },
+        "api.role_list": {
+            "type": "POST",
+            "auth": ["Bearer"]
+        },
+        "api.user_save": {
+            "type": "POST",
+            "auth": ["Bearer"],
+            "connections": [
+                {
+                    "app_connection": "admin_conn",
+                    "event": "api.mail-send",
+                    "type": "POST"
+                }
+            ]
+        },
+        "api.user_get": {
+            "type": "GET",
+            "auth": [
+                "Bearer"
+            ]
+        },
+        "api.user_list": {
+            "type": "POST",
+            "auth": ["Bearer"]
+        },
+        "api.auth_user_apps": {
+            "type": "GET",
+            "auth": ["Bearer"]
+        },
+        "api.auth_user_roles": {
+            "type": "GET",
+            "auth": ["Bearer"]
+        },
+        "api.auth_user_notifications": {
+            "type": "GET",
+            "auth": ["Bearer"]
+        },
+        "api.notification_save": {
+            "type": "POST",
+            "auth": ["Bearer"]
+        },
+        "api.notification_get": {
+            "type": "GET",
+            "auth": ["Bearer"]
+        },
+        "api.notification_list": {
+            "type": "POST",
+            "auth": ["Bearer"]
+        },
+        "api.test_errors": {
+            "type": "GET",
+            "auth": ["Unsecured"]
+        },
+        "api.setup_db": {
+            "type": "GET",
+            "auth": ["Unsecured"]
+        },
+        "api.setup_adhoc": {
+            "type": "GET",
+            "auth": ["Unsecured"]
+        },
+        "api.logo_upload": {
+            "type": "MULTIPART",
+            "auth": ["Bearer"],
+            "setting_keys": [
+                "bucket_images",
+                "s3_store"
+            ]
+        },
+        "api.logo_get": {
+            "type": "GET",
+            "auth": ["Unsecured"],
+            "setting_keys": [
+                "bucket_images",
+                "s3_store"
+            ]
+        },
+        "api.tmail_save": {
+            "type": "POST",
+            "auth": ["Bearer"]
+        },
+        "api.mail_test": {
+            "type": "POST",
+            "auth": ["Bearer"]
+        },
+        "api.tmail_get": {
+            "type": "GET",
+            "auth": ["Bearer"]
+        },
+        "api.tmail_list": {
+            "type": "POST",
+            "auth": ["Bearer"]
+        },
+        "api.mail_send": {
+            "type": "POST",
+            "auth": ["Bearer"],
+            "write_stream": {
+                "name": "stream_mail_processor"
+            }
+        },
+        "api.mail_processor": {
+            "type": "STREAM",
+            "read_stream": {
+                "name": "stream_mail_processor",
+                "consumer_group": "{auto}"
+            },
+            "setting_keys": [
+                "bucket_docs",
+                "s3_store"
+            ]
+        },
+        "api.user_role_save": {
+            "type": "POST",
+            "auth": ["Bearer"]
+        },
+        "api.user_role_list": {
+            "type": "POST",
+            "auth": ["Bearer"]
+        },
+        "api.user_validate_mail_unique": {
+            "type": "GET",
+            "auth": ["Unsecured"]
+        },
+        "api.key_consume": {
+            "type": "GET",
+            "auth": ["Bearer"]
+        }
+    }
+}

@@ -1,0 +1,22 @@
+{
+    "streams": {
+      "stream_manager": "hopeit.redis_streams.RedisStreamManager",
+      "connection_str": "${REDIS_URL}",
+      "delay_auto_start_seconds": 10
+    },
+    "logging": {
+      "log_level": "${LOGS_LEVEL}",
+      "log_path": "work/logs/apps/"
+    },
+    "auth": {
+      "auth_passphrase": "app0-platform",
+      "secrets_location": ".secrets/",
+      "create_keys": true,
+      "default_auth_methods": ["Unsecured"],
+      "domain": "${DOMAIN}"
+    },
+    "api": {
+      "docs_path": "/api/docs"
+    }
+  }
+  

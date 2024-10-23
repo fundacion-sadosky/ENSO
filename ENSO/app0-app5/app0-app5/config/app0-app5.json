@@ -1,0 +1,209 @@
+{
+    "$schema": "https://raw.githubusercontent.com/hopeit-git/hopeit.engine/master/engine/config/schemas/app-config-schema-draftv6.json",
+    "app": {
+        "name": "app0-app5",
+        "version": "1.0"
+    },
+    "plugins": [
+        {"name": "platform-auth", "version": "1.0"}
+    ],
+    "engine": {
+        "import_modules": ["app0.app5"],
+        "cors_origin": "${CORS_ORIGIN}"
+    },
+    "app_connections": {
+        "admin_conn": {
+            "name": "app0-admin",
+            "version": "1.0",
+            "client": "hopeit.apps_client.AppsClient"
+        }
+    },
+    "settings": {
+        "admin_conn": {
+            "connection_str": "${APP0_ADMIN_API_URL}"
+        },
+        "data_store": {
+            "endpoint_url": "${OBJECT_STORAGE_ENDPOINT_URL}",
+            "aws_access_key_id": "${OBJECT_STORAGE_ACCESS_KEY_ID}",
+            "aws_secret_access_key" : "${OBJECT_STORAGE_SECRET_ACCESS_KEY}",
+            "use_ssl": false
+        },
+        "res_images": {            
+            "bucket": "platform-images",
+            "chunk_size": 16384
+        },
+        "res_docs": {            
+            "bucket": "platform-docs",
+            "chunk_size": 16384
+        }
+    },
+    "env": {
+        "env_config": {
+            "app0_admin_url": "${APP0_ADMIN_URL}"
+        },
+        "mongodb": {
+            "conn_str": "${MONGO_URL}",
+            "dbname": "${MONGO_DB}"
+        },
+        "mqtt": {
+            "host": "${MQTT_HOST}",
+            "port": "${MQTT_PORT}"
+        },
+        "fs": {
+            "csv_store": "./csv_store"
+        }
+    },
+    "events": {
+        "api.setup_adhoc": {
+            "type": "GET",
+            "auth": ["Unsecured"],
+            "group": "w"
+        },
+        "api.setup_db": {
+            "type": "GET",
+            "auth": ["Unsecured"],
+            "group": "w"
+        },
+        "api.app_get_data": {
+            "type": "GET",
+            "auth": ["Bearer"],
+            "group": "w"
+        },
+        "api.mqtt_subscriber": {
+            "type": "SERVICE",
+            "write_stream": {
+              "name": "stream_sensor_in"
+            },
+            "group": "m"
+        },
+        "api.mqtt_etl": {
+            "type": "SERVICE",
+            "write_stream": {
+                "name": "{events.streams.something_event.write_stream.name}"
+            },
+            "group": "m"
+        },
+        "api.mqtt_processor": {
+            "type": "STREAM",
+            "read_stream": {
+                "name": "stream_sensor_in",
+                "consumer_group": "{auto}"
+            },
+            "group": "m"
+        },
+        "api.machine_get": {
+            "type": "GET",
+            "auth": ["Bearer"],
+            "group": "w"
+        },
+        "api.machine_list": {
+            "type": "POST",
+            "auth": ["Bearer"],
+            "group": "w"
+        },
+        "api.machine_save": {
+            "type": "POST",
+            "auth": ["Bearer"],
+            "group": "w"
+        },
+        "api.machine_data": {
+            "type": "GET",
+            "auth": ["Bearer"],
+            "group": "w"
+        },
+        "api.product_data": {
+            "type": "GET",
+            "auth": ["Bearer"],
+            "group": "w"
+        },
+        "api.sensor_data": {
+            "type": "GET",
+            "auth": ["Bearer"],
+            "group": "w"
+        },
+        "api.sensor_data_csv": {
+            "type": "GET",
+            "auth": ["Bearer"],
+            "group": "w"
+        },
+        "api.job_new": {
+            "type": "GET",
+            "auth": ["Bearer"],
+            "group": "w"
+        },
+        "api.job_solve": {
+            "type": "POST",
+            "auth": ["Bearer"],
+            "write_stream": {
+                "name": "stream_jobs_app5"
+            },
+            "group": "w"
+        },
+        "api.job_save": {
+            "type": "POST",
+            "auth": ["Bearer"],
+            "group": "w"
+        },
+        "api.job_processor": {
+            "type": "STREAM",
+            "read_stream": {
+                "name": "stream_jobs_app5",
+                "consumer_group": "{auto}"
+            },
+            "group": "p"
+        },
+        "api.job_get": {
+            "type": "GET",
+            "auth": ["Bearer"],
+            "group": "w"
+        },
+        "api.job_list": {
+            "type": "POST",
+            "auth": ["Bearer"],
+            "group": "w"
+        },
+        "api.job_file_upload": {
+            "type": "MULTIPART",
+            "auth": ["Bearer"],
+            "setting_keys": [
+                "res_docs",
+                "data_store"
+            ],
+            "group": "w"
+        },
+        "api.job_file_get": {
+            "type": "GET",
+            "auth": ["Bearer"],
+            "setting_keys": [
+                "res_docs",
+                "data_store"
+            ],
+            "group": "w"
+        },
+        "api.job_log_list": {
+            "type": "POST",
+            "auth": ["Bearer"],
+            "group": "w"
+        },
+        "api.kpi_data": {
+            "type": "GET",
+            "auth": ["Bearer"],
+            "group": "w"
+        },
+        "api.product_get": {
+            "type": "GET",
+            "auth": ["Bearer"],
+            "group": "w"
+        },
+        "api.product_list": {
+            "type": "POST",
+            "auth": ["Bearer"],
+            "group": "w"
+        },
+        "api.product_save": {
+            "type": "POST",
+            "auth": ["Bearer"],
+            "group": "w"
+        }
+   }
+}

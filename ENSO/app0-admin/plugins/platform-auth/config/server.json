@@ -1,0 +1,15 @@
+{
+  "streams": {
+    "connection_str": "${REDIS_URL}"
+  },
+  "logging": {
+    "log_level": "${LOGS_LEVEL}",
+    "log_path": "${LOGS_PATH}/"
+  },
+  "auth": {
+    "auth_passphrase": "app0-platform",
+    "secrets_location": ".secrets/",
+    "create_keys": true,
+    "default_auth_methods": ["Unsecured"]
+  }
+}

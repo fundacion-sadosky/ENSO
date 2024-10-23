@@ -1,0 +1,58 @@
+version: '3.8'
+
+services:
+  mongodb:
+    image : mongo:5.0.8-focal
+    container_name: mongodb
+    environment:
+      PUID: ${PUID}
+      PGID: ${PGID}
+      MONGO_INITDB_ROOT_USERNAME: ${MONGO_INITDB_ROOT_USERNAME}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_INITDB_ROOT_PASSWORD}
+    volumes:
+      - ./conf/db01/init-mongo.js:/docker-entrypoint-initdb.d/init-mongo.js:ro
+      - ./data/db01:/data/db
+    ports:
+      - 27017:27017
+    restart: unless-stopped
+    command: mongod --quiet --logpath /dev/null
+
+  redis:
+    image: 'redis:6.2.13'
+    environment:
+      # ALLOW_EMPTY_PASSWORD is recommended only for development.
+      - ALLOW_EMPTY_PASSWORD=yes
+      - REDIS_DISABLE_COMMANDS=FLUSHDB,FLUSHALL
+    volumes:
+      - ./conf/redis01:/opt/redis-conf
+      - ./conf/redis01/redis.conf:/usr/local/etc/redis/redis.conf
+      - ./data/redis01:/data
+    ports:
+      - '6379:6379'
+
+  api-gateway:
+    image: nginx:stable
+    volumes:
+      - ./api-gateway/conf.d:/etc/nginx/conf.d
+      - ./web/html:/usr/share/nginx/html
+    ports:
+      - 80:80
+  
+  minio:
+    image: minio/minio
+    ports:
+      - "9000:9000"
+      - "9001:9001"
+    environment:
+      MINIO_ROOT_USER: ${MINIO_ROOT_USER}
+      MINIO_ROOT_PASSWORD: ${MINIO_ROOT_PASSWORD}
+    volumes:
+      - storage1:/data
+    command: server --console-address ":9001" /data
+
+volumes:
+  storage1:
+
+networks:
+  default:
+    name: app0-network

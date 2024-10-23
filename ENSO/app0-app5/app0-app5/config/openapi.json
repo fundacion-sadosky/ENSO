@@ -1,0 +1,4236 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "version": "1.0",
+    "title": "App0 App5",
+    "description": "App0 App5"
+  },
+  "paths": {
+    "/api/platform-auth/1x0/login": {
+      "get": {
+        "summary": "Auth: Login",
+        "description": "Handles users login using basic-auth\nand generate access tokens for external services invoking apps\nplugged in with basic-auth plugin.",
+        "parameters": [
+          {
+            "name": "X-Track-Request-Id",
+            "in": "header",
+            "required": false,
+            "description": "Track information: Request-Id",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Track-Request-Ts",
+            "in": "header",
+            "required": false,
+            "description": "Track information: Request-Ts",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Authentication information to be used for further API calls",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AuthInfo"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Login failed, invalid credentials",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorInfo"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "platform_auth.1x0"
+        ],
+        "security": [
+          {
+            "auth.basic": []
+          }
+        ]
+      }
+    },
+    "/api/platform-auth/1x0/refresh": {
+      "get": {
+        "summary": "Auth: Refresh",
+        "description": "This event can be used for obtain new access token and update refresh token (http cookie),\nwith no need to re-login the user if there is a valid refresh token active.",
+        "parameters": [
+          {
+            "name": "X-Track-Request-Id",
+            "in": "header",
+            "required": false,
+            "description": "Track information: Request-Id",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Track-Request-Ts",
+            "in": "header",
+            "required": false,
+            "description": "Track information: Request-Ts",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Refreshed authentication information to be used for further API calls",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AuthInfo"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Login failed, invalid credentials. An http-cookie is expected",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorInfo"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "platform_auth.1x0"
+        ],
+        "security": [
+          {
+            "platform_auth.1x0.refresh": []
+          }
+        ]
+      }
+    },
+    "/api/platform-auth/1x0/authorize": {
+      "get": {
+        "summary": "Auth: Authorize",
+        "description": "This event can be used for obtain new access token and update refresh token (http cookie),\nrelated to enviroment with no need to re-login the user if there is a valid refresh token active.",
+        "parameters": [
+          {
+            "name": "X-Track-Request-Id",
+            "in": "header",
+            "required": false,
+            "description": "Track information: Request-Id",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Track-Request-Ts",
+            "in": "header",
+            "required": false,
+            "description": "Track information: Request-Ts",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Refreshed authentication information to be used for further API calls",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AuthInfo"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Login failed, invalid credentials. An http-cookie is expected",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorInfo"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "platform_auth.1x0"
+        ],
+        "security": [
+          {
+            "platform_auth.1x0.refresh": []
+          }
+        ]
+      }
+    },
+    "/api/app0-app5/1x0/api/setup-adhoc": {
+      "get": {
+        "summary": "Admin: setup-adhoc",
+        "description": "Admin: setup-adhoc",
+        "parameters": [
+          {
+            "name": "code",
+            "in": "query",
+            "required": true,
+            "description": "Setup Code",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Track-Request-Id",
+            "in": "header",
+            "required": false,
+            "description": "Track information: Request-Id",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Track-Request-Ts",
+            "in": "header",
+            "required": false,
+            "description": "Track information: Request-Ts",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Dto"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "api.setup_adhoc"
+                  ],
+                  "properties": {
+                    "api.setup_adhoc": {
+                      "type": "string"
+                    }
+                  },
+                  "description": "api.setup_adhoc string payload"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Operation forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "api.setup_adhoc"
+                  ],
+                  "properties": {
+                    "api.setup_adhoc": {
+                      "type": "string"
+                    }
+                  },
+                  "description": "api.setup_adhoc string payload"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Object not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "api.setup_adhoc"
+                  ],
+                  "properties": {
+                    "api.setup_adhoc": {
+                      "type": "string"
+                    }
+                  },
+                  "description": "api.setup_adhoc string payload"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "app0_app5.1x0"
+        ]
+      }
+    },
+    "/api/app0-app5/1x0/api/setup-db": {
+      "get": {
+        "summary": "Admin: setup-db",
+        "description": "Admin: setup-db",
+        "parameters": [
+          {
+            "name": "code",
+            "in": "query",
+            "required": true,
+            "description": "Setup Code",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Track-Request-Id",
+            "in": "header",
+            "required": false,
+            "description": "Track information: Request-Id",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Track-Request-Ts",
+            "in": "header",
+            "required": false,
+            "description": "Track information: Request-Ts",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Dto"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "api.setup_db"
+                  ],
+                  "properties": {
+                    "api.setup_db": {
+                      "type": "string"
+                    }
+                  },
+                  "description": "api.setup_db string payload"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Operation forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "api.setup_db"
+                  ],
+                  "properties": {
+                    "api.setup_db": {
+                      "type": "string"
+                    }
+                  },
+                  "description": "api.setup_db string payload"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Object not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "api.setup_db"
+                  ],
+                  "properties": {
+                    "api.setup_db": {
+                      "type": "string"
+                    }
+                  },
+                  "description": "api.setup_db string payload"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "app0_app5.1x0"
+        ]
+      }
+    },
+    "/api/app0-app5/1x0/api/app-get-data": {
+      "get": {
+        "summary": "Admin: app-get-data",
+        "description": "Admin: app-get-data",
+        "parameters": [
+          {
+            "name": "action",
+            "in": "query",
+            "required": false,
+            "description": "Some action",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Track-Request-Id",
+            "in": "header",
+            "required": false,
+            "description": "Track information: Request-Id",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Track-Request-Ts",
+            "in": "header",
+            "required": false,
+            "description": "Track information: Request-Ts",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "App data object",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppData"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "api.app_get_data"
+                  ],
+                  "properties": {
+                    "api.app_get_data": {
+                      "type": "string"
+                    }
+                  },
+                  "description": "api.app_get_data string payload"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Operation forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "api.app_get_data"
+                  ],
+                  "properties": {
+                    "api.app_get_data": {
+                      "type": "string"
+                    }
+                  },
+                  "description": "api.app_get_data string payload"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Object not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "api.app_get_data"
+                  ],
+                  "properties": {
+                    "api.app_get_data": {
+                      "type": "string"
+                    }
+                  },
+                  "description": "api.app_get_data string payload"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "app0_app5.1x0"
+        ],
+        "security": [
+          {
+            "auth.bearer": []
+          }
+        ]
+      }
+    },
+    "/api/app0-app5/1x0/api/machine-get": {
+      "get": {
+        "summary": "Machine: machine-get",
+        "description": "Machine: machine-get",
+        "parameters": [
+          {
+            "name": "obj_id",
+            "in": "query",
+            "required": true,
+            "description": "Object ID",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Track-Request-Id",
+            "in": "header",
+            "required": false,
+            "description": "Track information: Request-Id",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Track-Request-Ts",
+            "in": "header",
+            "required": false,
+            "description": "Track information: Request-Ts",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Machine",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Machine"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "api.machine_get"
+                  ],
+                  "properties": {
+                    "api.machine_get": {
+                      "type": "string"
+                    }
+                  },
+                  "description": "api.machine_get string payload"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "app0_app5.1x0"
+        ],
+        "security": [
+          {
+            "auth.bearer": []
+          }
+        ]
+      }
+    },
+    "/api/app0-app5/1x0/api/machine-list": {
+      "post": {
+        "summary": "Machine: machine-list",
+        "description": "Machine: machine-list",
+        "parameters": [
+          {
+            "name": "X-Track-Request-Id",
+            "in": "header",
+            "required": false,
+            "description": "Track information: Request-Id",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Track-Request-Ts",
+            "in": "header",
+            "required": false,
+            "description": "Track information: Request-Ts",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Filters to search",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Query"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "List of results",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SearchResults"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "app0_app5.1x0"
+        ],
+        "security": [
+          {
+            "auth.bearer": []
+          }
+        ]
+      }
+    },
+    "/api/app0-app5/1x0/api/machine-save": {
+      "post": {
+        "summary": "Machine: machine-save",
+        "description": "Machine: machine-save",
+        "parameters": [
+          {
+            "name": "action",
+            "in": "query",
+            "required": false,
+            "description": "Apply some action",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Track-Request-Id",
+            "in": "header",
+            "required": false,
+            "description": "Track information: Request-Id",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Track-Request-Ts",
+            "in": "header",
+            "required": false,
+            "description": "Track information: Request-Ts",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Machine Info",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Machine"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Machine updated",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Machine"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Request error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "api.machine_save"
+                  ],
+                  "properties": {
+                    "api.machine_save": {
+                      "type": "string"
+                    }
+                  },
+                  "description": "api.machine_save string payload"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "api.machine_save"
+                  ],
+                  "properties": {
+                    "api.machine_save": {
+                      "type": "string"
+                    }
+                  },
+                  "description": "api.machine_save string payload"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Object not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "api.machine_save"
+                  ],
+                  "properties": {
+                    "api.machine_save": {
+                      "type": "string"
+                    }
+                  },
+                  "description": "api.machine_save string payload"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "app0_app5.1x0"
+        ],
+        "security": [
+          {
+            "auth.bearer": []
+          }
+        ]
+      }
+    },
+    "/api/app0-app5/1x0/api/machine-data": {
+      "get": {
+        "summary": "Machine: machine-data",
+        "description": "Machine: machine-data",
+        "parameters": [
+          {
+            "name": "action",
+            "in": "query",
+            "required": false,
+            "description": "action",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "machine",
+            "in": "query",
+            "required": false,
+            "description": "Machine",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "date_from",
+            "in": "query",
+            "required": false,
+            "description": "Date from (YYYYMMDD)",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "date_to",
+            "in": "query",
+            "required": false,
+            "description": "Date to (YYYYMMDD)",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Track-Request-Id",
+            "in": "header",
+            "required": false,
+            "description": "Track information: Request-Id",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Track-Request-Ts",
+            "in": "header",
+            "required": false,
+            "description": "Track information: Request-Ts",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "MachineData data object",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MachineData"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "api.machine_data"
+                  ],
+                  "properties": {
+                    "api.machine_data": {
+                      "type": "string"
+                    }
+                  },
+                  "description": "api.machine_data string payload"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Operation forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "api.machine_data"
+                  ],
+                  "properties": {
+                    "api.machine_data": {
+                      "type": "string"
+                    }
+                  },
+                  "description": "api.machine_data string payload"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Object not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "api.machine_data"
+                  ],
+                  "properties": {
+                    "api.machine_data": {
+                      "type": "string"
+                    }
+                  },
+                  "description": "api.machine_data string payload"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "app0_app5.1x0"
+        ],
+        "security": [
+          {
+            "auth.bearer": []
+          }
+        ]
+      }
+    },
+    "/api/app0-app5/1x0/api/product-data": {
+      "get": {
+        "summary": "Product: product-data",
+        "description": "Product: product-data",
+        "parameters": [
+          {
+            "name": "action",
+            "in": "query",
+            "required": false,
+            "description": "action",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "machine",
+            "in": "query",
+            "required": false,
+            "description": "Machine",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "date_from",
+            "in": "query",
+            "required": false,
+            "description": "Date from (YYYYMMDD)",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "date_to",
+            "in": "query",
+            "required": false,
+            "description": "Date to (YYYYMMDD)",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Track-Request-Id",
+            "in": "header",
+            "required": false,
+            "description": "Track information: Request-Id",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Track-Request-Ts",
+            "in": "header",
+            "required": false,
+            "description": "Track information: Request-Ts",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "ProductData data object",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductData"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "api.product_data"
+                  ],
+                  "properties": {
+                    "api.product_data": {
+                      "type": "string"
+                    }
+                  },
+                  "description": "api.product_data string payload"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Operation forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "api.product_data"
+                  ],
+                  "properties": {
+                    "api.product_data": {
+                      "type": "string"
+                    }
+                  },
+                  "description": "api.product_data string payload"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Object not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "api.product_data"
+                  ],
+                  "properties": {
+                    "api.product_data": {
+                      "type": "string"
+                    }
+                  },
+                  "description": "api.product_data string payload"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "app0_app5.1x0"
+        ],
+        "security": [
+          {
+            "auth.bearer": []
+          }
+        ]
+      }
+    },
+    "/api/app0-app5/1x0/api/sensor-data": {
+      "get": {
+        "summary": "Machine: sensor-data",
+        "description": "Machine: sensor-data",
+        "parameters": [
+          {
+            "name": "action",
+            "in": "query",
+            "required": true,
+            "description": "action",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "machine",
+            "in": "query",
+            "required": true,
+            "description": "Machine",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "date",
+            "in": "query",
+            "required": true,
+            "description": "Date from (YYYYMMDD)",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Track-Request-Id",
+            "in": "header",
+            "required": false,
+            "description": "Track information: Request-Id",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Track-Request-Ts",
+            "in": "header",
+            "required": false,
+            "description": "Track information: Request-Ts",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "MachineData data object",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SensorData"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "api.sensor_data"
+                  ],
+                  "properties": {
+                    "api.sensor_data": {
+                      "type": "string"
+                    }
+                  },
+                  "description": "api.sensor_data string payload"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Operation forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "api.sensor_data"
+                  ],
+                  "properties": {
+                    "api.sensor_data": {
+                      "type": "string"
+                    }
+                  },
+                  "description": "api.sensor_data string payload"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Object not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "api.sensor_data"
+                  ],
+                  "properties": {
+                    "api.sensor_data": {
+                      "type": "string"
+                    }
+                  },
+                  "description": "api.sensor_data string payload"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "app0_app5.1x0"
+        ],
+        "security": [
+          {
+            "auth.bearer": []
+          }
+        ]
+      }
+    },
+    "/api/app0-app5/1x0/api/sensor-data-csv": {
+      "get": {
+        "summary": "Machine: sensor-data-csv",
+        "description": "Machine: sensor-data-csv",
+        "parameters": [
+          {
+            "name": "action",
+            "in": "query",
+            "required": true,
+            "description": "action",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "machine",
+            "in": "query",
+            "required": true,
+            "description": "Machine",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "date",
+            "in": "query",
+            "required": true,
+            "description": "Date from (YYYYMMDD)",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Track-Request-Id",
+            "in": "header",
+            "required": false,
+            "description": "Track information: Request-Id",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Track-Request-Ts",
+            "in": "header",
+            "required": false,
+            "description": "Track information: Request-Ts",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "File contents",
+            "content": {
+              "application/octet-stream": {
+                "schema": {
+                  "type": "string",
+                  "format": "binary"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "File not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "api.sensor_data_csv"
+                  ],
+                  "properties": {
+                    "api.sensor_data_csv": {
+                      "type": "string"
+                    }
+                  },
+                  "description": "api.sensor_data_csv string payload"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "app0_app5.1x0"
+        ],
+        "security": [
+          {
+            "auth.bearer": []
+          }
+        ]
+      }
+    },
+    "/api/app0-app5/1x0/api/job-new": {
+      "get": {
+        "summary": "Job: job-new",
+        "description": "Job: job-new",
+        "parameters": [
+          {
+            "name": "origin_job_id",
+            "in": "query",
+            "required": false,
+            "description": "Origin Job Id",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Track-Request-Id",
+            "in": "header",
+            "required": false,
+            "description": "Track information: Request-Id",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Track-Request-Ts",
+            "in": "header",
+            "required": false,
+            "description": "Track information: Request-Ts",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Model Job with inputs with default values",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ModelJob"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Operation forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpRespInfo"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Object not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpRespInfo"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "app0_app5.1x0"
+        ],
+        "security": [
+          {
+            "auth.bearer": []
+          }
+        ]
+      }
+    },
+    "/api/app0-app5/1x0/api/job-solve": {
+      "post": {
+        "summary": "Job: job-solve",
+        "description": "Job: job-solve",
+        "parameters": [
+          {
+            "name": "X-Track-Request-Id",
+            "in": "header",
+            "required": false,
+            "description": "Track information: Request-Id",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Track-Request-Ts",
+            "in": "header",
+            "required": false,
+            "description": "Track information: Request-Ts",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Model Job",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ModelJob"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Model Job",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ModelJob"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Operation forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpRespInfo"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Object not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpRespInfo"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "app0_app5.1x0"
+        ],
+        "security": [
+          {
+            "auth.bearer": []
+          }
+        ]
+      }
+    },
+    "/api/app0-app5/1x0/api/job-save": {
+      "post": {
+        "summary": "Job: job-save",
+        "description": "Job: job-save",
+        "parameters": [
+          {
+            "name": "action",
+            "in": "query",
+            "required": false,
+            "description": "Apply some action",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Track-Request-Id",
+            "in": "header",
+            "required": false,
+            "description": "Track information: Request-Id",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Track-Request-Ts",
+            "in": "header",
+            "required": false,
+            "description": "Track information: Request-Ts",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "ModelJob",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ModelJob"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "ModelJob",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ModelJob"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Request error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpRespInfo"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Operation forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpRespInfo"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Object not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpRespInfo"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "app0_app5.1x0"
+        ],
+        "security": [
+          {
+            "auth.bearer": []
+          }
+        ]
+      }
+    },
+    "/api/app0-app5/1x0/api/job-get": {
+      "get": {
+        "summary": "Job: job-get",
+        "description": "Job: job-get",
+        "parameters": [
+          {
+            "name": "obj_id",
+            "in": "query",
+            "required": true,
+            "description": "Job ID",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Track-Request-Id",
+            "in": "header",
+            "required": false,
+            "description": "Track information: Request-Id",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Track-Request-Ts",
+            "in": "header",
+            "required": false,
+            "description": "Track information: Request-Ts",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Object updated",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ModelJob"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Operation forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "api.job_get"
+                  ],
+                  "properties": {
+                    "api.job_get": {
+                      "type": "string"
+                    }
+                  },
+                  "description": "api.job_get string payload"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Object not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "api.job_get"
+                  ],
+                  "properties": {
+                    "api.job_get": {
+                      "type": "string"
+                    }
+                  },
+                  "description": "api.job_get string payload"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "app0_app5.1x0"
+        ],
+        "security": [
+          {
+            "auth.bearer": []
+          }
+        ]
+      }
+    },
+    "/api/app0-app5/1x0/api/job-list": {
+      "post": {
+        "summary": "Job: job-list",
+        "description": "Job: job-list",
+        "parameters": [
+          {
+            "name": "offset",
+            "in": "query",
+            "required": false,
+            "description": "Page offset / start",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "page_size",
+            "in": "query",
+            "required": false,
+            "description": "Page size",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "X-Track-Request-Id",
+            "in": "header",
+            "required": false,
+            "description": "Track information: Request-Id",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Track-Request-Ts",
+            "in": "header",
+            "required": false,
+            "description": "Track information: Request-Ts",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Filters to search",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Query"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "List of results",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SearchResults"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "app0_app5.1x0"
+        ],
+        "security": [
+          {
+            "auth.bearer": []
+          }
+        ]
+      }
+    },
+    "/api/app0-app5/1x0/api/job-file-upload": {
+      "post": {
+        "summary": "Job: job-file-upload",
+        "description": "Job: job-file-upload",
+        "parameters": [
+          {
+            "name": "job_id",
+            "in": "query",
+            "required": true,
+            "description": "Job Id",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "tag",
+            "in": "query",
+            "required": false,
+            "description": "Tag",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Track-Request-Id",
+            "in": "header",
+            "required": false,
+            "description": "Track information: Request-Id",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Track-Request-Ts",
+            "in": "header",
+            "required": false,
+            "description": "Track information: Request-Ts",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "attachment"
+                ],
+                "properties": {
+                  "attachment": {
+                    "type": "string",
+                    "format": "binary",
+                    "description": "attachment"
+                  }
+                }
+              },
+              "encoding": {
+                "attachment": {
+                  "contentType": "application/octect-stream"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Model Job with inputs with default values",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PlatformFile"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Operation forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpRespInfo"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Object not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpRespInfo"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "app0_app5.1x0"
+        ],
+        "security": [
+          {
+            "auth.bearer": []
+          }
+        ]
+      }
+    },
+    "/api/app0-app5/1x0/api/job-file-get": {
+      "get": {
+        "summary": "Job: job-file-load",
+        "description": "Job: job-file-load",
+        "parameters": [
+          {
+            "name": "job_id",
+            "in": "query",
+            "required": true,
+            "description": "Job Id",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "doc_id",
+            "in": "query",
+            "required": true,
+            "description": "Resource filename",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Track-Request-Id",
+            "in": "header",
+            "required": false,
+            "description": "Track information: Request-Id",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Track-Request-Ts",
+            "in": "header",
+            "required": false,
+            "description": "Track information: Request-Ts",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "File contents",
+            "content": {
+              "application/octet-stream": {
+                "schema": {
+                  "type": "string",
+                  "format": "binary"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "File not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "api.job_file_get"
+                  ],
+                  "properties": {
+                    "api.job_file_get": {
+                      "type": "string"
+                    }
+                  },
+                  "description": "api.job_file_get string payload"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "app0_app5.1x0"
+        ],
+        "security": [
+          {
+            "auth.bearer": []
+          }
+        ]
+      }
+    },
+    "/api/app0-app5/1x0/api/job-log-list": {
+      "post": {
+        "summary": "Job: job-log-list",
+        "description": "Job: job-log-list",
+        "parameters": [
+          {
+            "name": "offset",
+            "in": "query",
+            "required": false,
+            "description": "Page offset / start",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "page_size",
+            "in": "query",
+            "required": false,
+            "description": "Page size",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "X-Track-Request-Id",
+            "in": "header",
+            "required": false,
+            "description": "Track information: Request-Id",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Track-Request-Ts",
+            "in": "header",
+            "required": false,
+            "description": "Track information: Request-Ts",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Filters to search",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Query"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "List of results",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SearchResults"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "app0_app5.1x0"
+        ],
+        "security": [
+          {
+            "auth.bearer": []
+          }
+        ]
+      }
+    },
+    "/api/app0-app5/1x0/api/kpi-data": {
+      "get": {
+        "summary": "KPI: kpi-data",
+        "description": "KPI: kpi-data",
+        "parameters": [
+          {
+            "name": "action",
+            "in": "query",
+            "required": false,
+            "description": "Some action",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "m",
+            "in": "query",
+            "required": false,
+            "description": "Month (1-12)",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "y",
+            "in": "query",
+            "required": false,
+            "description": "Year",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Track-Request-Id",
+            "in": "header",
+            "required": false,
+            "description": "Track information: Request-Id",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Track-Request-Ts",
+            "in": "header",
+            "required": false,
+            "description": "Track information: Request-Ts",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "KpiData object",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/KpiData"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "api.kpi_data"
+                  ],
+                  "properties": {
+                    "api.kpi_data": {
+                      "type": "string"
+                    }
+                  },
+                  "description": "api.kpi_data string payload"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Operation forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "api.kpi_data"
+                  ],
+                  "properties": {
+                    "api.kpi_data": {
+                      "type": "string"
+                    }
+                  },
+                  "description": "api.kpi_data string payload"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Object not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "api.kpi_data"
+                  ],
+                  "properties": {
+                    "api.kpi_data": {
+                      "type": "string"
+                    }
+                  },
+                  "description": "api.kpi_data string payload"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "app0_app5.1x0"
+        ],
+        "security": [
+          {
+            "auth.bearer": []
+          }
+        ]
+      }
+    },
+    "/api/app0-app5/1x0/api/product-get": {
+      "get": {
+        "summary": "Product: product-get",
+        "description": "Product: product-get",
+        "parameters": [
+          {
+            "name": "obj_id",
+            "in": "query",
+            "required": true,
+            "description": "Object ID",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Track-Request-Id",
+            "in": "header",
+            "required": false,
+            "description": "Track information: Request-Id",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Track-Request-Ts",
+            "in": "header",
+            "required": false,
+            "description": "Track information: Request-Ts",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Product",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Product"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "api.product_get"
+                  ],
+                  "properties": {
+                    "api.product_get": {
+                      "type": "string"
+                    }
+                  },
+                  "description": "api.product_get string payload"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "app0_app5.1x0"
+        ],
+        "security": [
+          {
+            "auth.bearer": []
+          }
+        ]
+      }
+    },
+    "/api/app0-app5/1x0/api/product-list": {
+      "post": {
+        "summary": "Product: product-list",
+        "description": "Product: product-list",
+        "parameters": [
+          {
+            "name": "X-Track-Request-Id",
+            "in": "header",
+            "required": false,
+            "description": "Track information: Request-Id",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Track-Request-Ts",
+            "in": "header",
+            "required": false,
+            "description": "Track information: Request-Ts",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Filters to search",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Query"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "List of results",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SearchResults"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "app0_app5.1x0"
+        ],
+        "security": [
+          {
+            "auth.bearer": []
+          }
+        ]
+      }
+    },
+    "/api/app0-app5/1x0/api/product-save": {
+      "post": {
+        "summary": "Product: product-save",
+        "description": "Product: product-save",
+        "parameters": [
+          {
+            "name": "action",
+            "in": "query",
+            "required": false,
+            "description": "Apply some action",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Track-Request-Id",
+            "in": "header",
+            "required": false,
+            "description": "Track information: Request-Id",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Track-Request-Ts",
+            "in": "header",
+            "required": false,
+            "description": "Track information: Request-Ts",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Product Info",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Product"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Product updated",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Product"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Request error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "api.product_save"
+                  ],
+                  "properties": {
+                    "api.product_save": {
+                      "type": "string"
+                    }
+                  },
+                  "description": "api.product_save string payload"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "api.product_save"
+                  ],
+                  "properties": {
+                    "api.product_save": {
+                      "type": "string"
+                    }
+                  },
+                  "description": "api.product_save string payload"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Object not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "api.product_save"
+                  ],
+                  "properties": {
+                    "api.product_save": {
+                      "type": "string"
+                    }
+                  },
+                  "description": "api.product_save string payload"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "app0_app5.1x0"
+        ],
+        "security": [
+          {
+            "auth.bearer": []
+          }
+        ]
+      }
+    },
+    "/api/config-manager/0x19/runtime-apps-config": {
+      "get": {
+        "summary": "Config Manager: Runtime Apps Config",
+        "description": "Returns the runtime config for the Apps running on this server",
+        "parameters": [
+          {
+            "name": "url",
+            "in": "query",
+            "required": false,
+            "description": "URL used to reach this server, informative",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "expand_events",
+            "in": "query",
+            "required": false,
+            "description": "Retrieve expanded effective events from event steps",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "X-Track-Request-Id",
+            "in": "header",
+            "required": false,
+            "description": "Track information: Request-Id",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Track-Request-Ts",
+            "in": "header",
+            "required": false,
+            "description": "Track information: Request-Ts",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Config info about running apps in current process",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RuntimeApps"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "config_manager.0x19"
+        ]
+      }
+    },
+    "/api/config-manager/0x19/cluster-apps-config": {
+      "get": {
+        "summary": "Config Manager: Cluster Apps Config",
+        "description": "Handle remote access to runtime configuration for a group of hosts",
+        "parameters": [
+          {
+            "name": "hosts",
+            "in": "query",
+            "required": true,
+            "description": "Comma-separated list of http://host:port strings",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "expand_events",
+            "in": "query",
+            "required": true,
+            "description": "Extract effective events from event steps",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "X-Track-Request-Id",
+            "in": "header",
+            "required": false,
+            "description": "Track information: Request-Id",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Track-Request-Ts",
+            "in": "header",
+            "required": false,
+            "description": "Track information: Request-Ts",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Combined config info about running apps in provided list of hosts",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RuntimeApps"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "config_manager.0x19"
+        ]
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "ErrorInfo": {
+        "type": "object",
+        "required": [
+          "msg",
+          "tb"
+        ],
+        "properties": {
+          "msg": {
+            "type": "string"
+          },
+          "tb": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "x-module-name": "hopeit.server.errors",
+        "description": "\n    Error information to be returned in failed responses\n    "
+      },
+      "AuthInfo": {
+        "type": "object",
+        "required": [
+          "access_token",
+          "token_type",
+          "renew"
+        ],
+        "properties": {
+          "access_token": {
+            "type": "string"
+          },
+          "token_type": {
+            "type": "string"
+          },
+          "renew": {
+            "type": "integer"
+          }
+        },
+        "x-module-name": "app0.platform.auth",
+        "description": "\n    Minimal auth info that should be returned outside this app\n    "
+      },
+      "Dto": {
+        "type": "object",
+        "required": [
+          "o"
+        ],
+        "properties": {
+          "o": {
+            "type": "object"
+          }
+        },
+        "x-module-name": "app0.admin.http",
+        "description": "\n    Generic object with a Dict with values for return in hopeit.engine\n    "
+      },
+      "HttpRespInfo": {
+        "type": "object",
+        "required": [
+          "code",
+          "msg"
+        ],
+        "properties": {
+          "code": {
+            "type": "integer"
+          },
+          "msg": {
+            "type": "string"
+          }
+        },
+        "x-module-name": "app0.admin.http",
+        "description": "\n    HTTP response code with message\n    "
+      },
+      "Machine": {
+        "type": "object",
+        "required": [
+          "nbr",
+          "name",
+          "code"
+        ],
+        "properties": {
+          "nbr": {
+            "type": "string",
+            "description": "Number"
+          },
+          "name": {
+            "type": "string",
+            "description": "Name"
+          },
+          "code": {
+            "type": "string",
+            "description": "MQTT Code"
+          },
+          "description": {
+            "type": "string",
+            "default": "",
+            "description": "Description"
+          },
+          "manufacturer": {
+            "type": "string",
+            "default": "",
+            "description": "manufacturer"
+          },
+          "model": {
+            "type": "string",
+            "default": "",
+            "description": "model"
+          },
+          "image": {
+            "type": "string",
+            "description": "Principal app image"
+          },
+          "enabled": {
+            "type": "boolean",
+            "default": true,
+            "description": "Enabled?"
+          },
+          "realtime_status": {
+            "type": "boolean",
+            "default": false,
+            "description": "realtime_status?"
+          },
+          "last_status_date": {
+            "type": "string",
+            "format": "date-time",
+            "description": "last_status_date"
+          },
+          "last_status": {
+            "$ref": "#/components/schemas/IdDescription",
+            "description": "last_status"
+          },
+          "id": {
+            "type": "string",
+            "description": "id"
+          }
+        },
+        "x-module-name": "app0.app5.machine",
+        "description": "Machine"
+      },
+      "IdDescription": {
+        "type": "object",
+        "required": [
+          "value",
+          "label"
+        ],
+        "properties": {
+          "value": {
+            "type": "string",
+            "description": "ObjectId"
+          },
+          "label": {
+            "type": "string",
+            "description": "Description"
+          },
+          "internal_id": {
+            "type": "string",
+            "description": "Human readable internalID"
+          },
+          "details": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            },
+            "description": "Extra details as dict"
+          }
+        },
+        "x-module-name": "app0.admin.common",
+        "description": "\n    Id with description\n    "
+      },
+      "AppData": {
+        "type": "object",
+        "properties": {
+          "machines_working": {
+            "type": "integer",
+            "description": "machines_working"
+          },
+          "production": {
+            "type": "integer",
+            "description": "production"
+          },
+          "alerts": {
+            "type": "integer",
+            "description": "alerts"
+          },
+          "alerts2": {
+            "type": "integer",
+            "description": "alerts"
+          },
+          "machines": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Machine"
+            },
+            "default": [],
+            "description": "machines"
+          }
+        },
+        "x-module-name": "app0.app5.app",
+        "description": "\n    AppData\n    "
+      },
+      "SensorMachine": {
+        "type": "object",
+        "properties": {
+          "client": {
+            "type": "string",
+            "description": "client"
+          },
+          "sense_time": {
+            "type": "string",
+            "format": "date-time",
+            "description": "sense time"
+          },
+          "topic": {
+            "type": "string",
+            "description": "topic"
+          },
+          "machine": {
+            "type": "string",
+            "description": "machine"
+          },
+          "metric": {
+            "type": "string",
+            "description": "metric"
+          },
+          "product": {
+            "type": "string",
+            "description": "product"
+          },
+          "valstr": {
+            "type": "string",
+            "description": "valstr"
+          },
+          "valint": {
+            "type": "integer",
+            "description": "valint"
+          },
+          "valflt": {
+            "type": "number",
+            "description": "valflt"
+          },
+          "processed": {
+            "type": "boolean",
+            "default": false,
+            "description": "sensor data processed?"
+          },
+          "fixed": {
+            "type": "boolean",
+            "default": false,
+            "description": "temp process field"
+          },
+          "id": {
+            "type": "string",
+            "description": "id"
+          }
+        },
+        "x-module-name": "app0.app5.sensor",
+        "description": "SensorMachine(client: Optional[str] = None, sense_time: Optional[datetime.datetime] = None, topic: Optional[str] = None, machine: Optional[str] = None, metric: Optional[str] = None, product: Optional[str] = None, valstr: Optional[str] = None, valint: Optional[int] = None, valflt: Optional[float] = None, processed: Optional[bool] = False, fixed: Optional[bool] = False, id: Optional[str] = None)"
+      },
+      "Expr": {
+        "type": "object",
+        "properties": {
+          "eq": {
+            "type": "string",
+            "description": "Match str field equal to"
+          },
+          "eq_bool": {
+            "type": "boolean",
+            "description": "Match bool field equal to"
+          },
+          "elem_match": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            },
+            "description": "Match at least one element of array field"
+          },
+          "text": {
+            "type": "string",
+            "description": "Match text index"
+          },
+          "regex": {
+            "type": "string",
+            "description": "Match field by regex"
+          },
+          "or_regex": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            },
+            "description": "Match OR a list of fields by regex"
+          }
+        },
+        "x-module-name": "app0.admin.db",
+        "description": "Expr(eq: Optional[str] = None, eq_bool: Optional[bool] = None, elem_match: Optional[Dict[str, str]] = None, text: Optional[str] = None, regex: Optional[str] = None, or_regex: Optional[Dict[str, str]] = None)"
+      },
+      "FieldSort": {
+        "type": "object",
+        "required": [
+          "field"
+        ],
+        "properties": {
+          "field": {
+            "type": "string",
+            "description": "Field to order"
+          },
+          "order": {
+            "type": "integer",
+            "default": 1,
+            "description": "Type 1 asc, -1 desc"
+          }
+        },
+        "x-module-name": "app0.admin.db",
+        "description": "Field order tuple"
+      },
+      "Query": {
+        "type": "object",
+        "required": [
+          "flts"
+        ],
+        "properties": {
+          "flts": {
+            "type": "object",
+            "additionalProperties": {
+              "$ref": "#/components/schemas/Expr"
+            }
+          },
+          "max_items": {
+            "type": "integer",
+            "default": 100
+          },
+          "sort": {
+            "$ref": "#/components/schemas/FieldSort"
+          }
+        },
+        "x-module-name": "app0.admin.db",
+        "description": "\n    Query handler\n    "
+      },
+      "SearchResults": {
+        "type": "object",
+        "required": [
+          "results"
+        ],
+        "properties": {
+          "results": {
+            "type": "array",
+            "items": {
+              "anyOf": [
+                {
+                  "type": "array"
+                },
+                {
+                  "type": "object"
+                }
+              ]
+            }
+          },
+          "total": {
+            "type": "integer",
+            "default": 0
+          },
+          "page": {
+            "type": "integer",
+            "default": 0
+          },
+          "page_size": {
+            "type": "integer",
+            "default": 0
+          },
+          "offset": {
+            "type": "integer"
+          },
+          "next_page": {
+            "type": "integer"
+          },
+          "next_offset": {
+            "type": "integer"
+          }
+        },
+        "x-module-name": "app0.admin.db",
+        "description": "SearchResults(results: List[Union[Dict[Any, Any], List[Any]]], total: int = 0, page: int = 0, page_size: int = 0, offset: Optional[int] = None, next_page: Optional[int] = None, next_offset: Optional[int] = None)"
+      },
+      "MachineDataStatus": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "description": "status"
+          },
+          "day": {
+            "type": "string",
+            "description": "day"
+          },
+          "hour": {
+            "type": "string",
+            "description": "hour"
+          },
+          "qty": {
+            "type": "integer",
+            "description": "quantity"
+          },
+          "seconds": {
+            "type": "integer",
+            "description": "seconds"
+          }
+        },
+        "x-module-name": "app0.app5.machine",
+        "description": "MachineDataStatus(status: Optional[str] = None, day: Optional[str] = None, hour: Optional[str] = None, qty: Optional[int] = None, seconds: Optional[int] = None)"
+      },
+      "MachineData": {
+        "type": "object",
+        "properties": {
+          "machine": {
+            "type": "string",
+            "description": "machine code"
+          },
+          "date_from": {
+            "type": "string",
+            "description": "date_from"
+          },
+          "date_to": {
+            "type": "string",
+            "description": "date_to"
+          },
+          "total_sense": {
+            "type": "integer",
+            "default": 0,
+            "description": "total sensor received"
+          },
+          "total_seconds": {
+            "type": "integer",
+            "default": 0,
+            "description": "total seconds in range"
+          },
+          "status_list": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/MachineDataStatus"
+            },
+            "default": [],
+            "description": "status"
+          }
+        },
+        "x-module-name": "app0.app5.machine",
+        "description": "MachineData"
+      },
+      "ProductDataStatus": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "description": "status"
+          },
+          "day": {
+            "type": "string",
+            "description": "day"
+          },
+          "hour": {
+            "type": "string",
+            "description": "hour"
+          },
+          "qty": {
+            "type": "integer",
+            "description": "quantity"
+          }
+        },
+        "x-module-name": "app0.app5.product",
+        "description": "ProductDataStatus(status: Optional[str] = None, day: Optional[str] = None, hour: Optional[str] = None, qty: Optional[int] = None)"
+      },
+      "ProductData": {
+        "type": "object",
+        "properties": {
+          "machine": {
+            "type": "string",
+            "description": "machine code"
+          },
+          "date_from": {
+            "type": "string",
+            "description": "date_from"
+          },
+          "date_to": {
+            "type": "string",
+            "description": "date_to"
+          },
+          "total_sense": {
+            "type": "integer",
+            "default": 0,
+            "description": "total sensor received"
+          },
+          "status_list": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ProductDataStatus"
+            },
+            "default": [],
+            "description": "status"
+          }
+        },
+        "x-module-name": "app0.app5.product",
+        "description": "ProductData"
+      },
+      "SensorData": {
+        "type": "object",
+        "properties": {
+          "machine": {
+            "type": "string",
+            "description": "machine code"
+          },
+          "date_from": {
+            "type": "string",
+            "description": "date_from"
+          },
+          "date_to": {
+            "type": "string",
+            "description": "date_to"
+          },
+          "total_sense": {
+            "type": "integer",
+            "default": 0,
+            "description": "total sensor received"
+          },
+          "sense_list": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SensorMachine"
+            },
+            "default": [],
+            "description": "senses"
+          }
+        },
+        "x-module-name": "app0.app5.sensor",
+        "description": "SensorData"
+      },
+      "ModelInput": {
+        "type": "object",
+        "properties": {
+          "tiempo_setup": {
+            "type": "number",
+            "default": 0.5,
+            "description": "tiempo_setup"
+          },
+          "cantidad_operarios": {
+            "type": "integer",
+            "default": 3,
+            "description": "cantidad_operarios"
+          },
+          "fecha_inicio": {
+            "type": "string",
+            "format": "date-time",
+            "description": "fecha inicio"
+          },
+          "fuera_servicios": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ItemFueraServicio"
+            },
+            "default": [],
+            "description": "Fuera Servicios"
+          },
+          "ots": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ItemOt"
+            },
+            "default": [],
+            "description": "OTs"
+          }
+        },
+        "x-module-name": "app0.app5.model",
+        "description": "Model Input"
+      },
+      "ItemFueraServicio": {
+        "type": "object",
+        "required": [
+          "id",
+          "maquina"
+        ],
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "Id"
+          },
+          "maquina": {
+            "type": "string",
+            "description": "M\u00e1quina"
+          },
+          "hora_inicio": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Desde"
+          },
+          "hora_fin": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Hasta"
+          },
+          "motivo": {
+            "type": "string",
+            "default": "",
+            "description": "Motivo"
+          }
+        },
+        "x-module-name": "app0.app5.model",
+        "description": "ItemFueraServicio(id: int, maquina: str, hora_inicio: Optional[datetime.datetime] = None, hora_fin: Optional[datetime.datetime] = None, motivo: Optional[str] = '')"
+      },
+      "ItemOt": {
+        "type": "object",
+        "required": [
+          "id",
+          "ot_nro",
+          "maquina_nro"
+        ],
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "Id"
+          },
+          "ot_nro": {
+            "type": "string",
+            "description": "Nro OT"
+          },
+          "maquina_nro": {
+            "type": "string",
+            "description": "Nro Maquina"
+          },
+          "producto_id": {
+            "type": "string",
+            "default": "",
+            "description": "Id Producto"
+          },
+          "producto_desc": {
+            "type": "string",
+            "default": "",
+            "description": "Tipo Producto"
+          },
+          "maquina_desc": {
+            "type": "string",
+            "default": "",
+            "description": "M\u00e1quina descripcion"
+          },
+          "color": {
+            "type": "string",
+            "default": "",
+            "description": "Color"
+          },
+          "peso": {
+            "type": "number",
+            "default": 0.0,
+            "description": "Peso"
+          },
+          "cantidad": {
+            "type": "integer",
+            "default": 0,
+            "description": "Cantidad planificada"
+          },
+          "horas": {
+            "type": "number",
+            "default": 0.0,
+            "description": "Horas estimadas"
+          },
+          "fecha_vencimiento": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Fecha vencimiento"
+          },
+          "cadencia": {
+            "type": "integer",
+            "default": 0,
+            "description": "Cadencia de m\u00e1quina"
+          },
+          "operarios_requeridos": {
+            "type": "number",
+            "default": 0.0,
+            "description": "Operarios requeridos"
+          },
+          "prioridad": {
+            "type": "integer",
+            "default": 0,
+            "description": "Cantidad planificada"
+          },
+          "setup_maquina": {
+            "type": "number",
+            "default": 0.0,
+            "description": "Setup m\u00e1quina (h)"
+          }
+        },
+        "x-module-name": "app0.app5.model",
+        "description": "ItemOt(id: int, ot_nro: str, maquina_nro: str, producto_id: str = '', producto_desc: str = '', maquina_desc: str = '', color: str = '', peso: float = 0.0, cantidad: int = 0, horas: float = 0.0, fecha_vencimiento: Optional[datetime.datetime] = None, cadencia: int = 0, operarios_requeridos: float = 0.0, prioridad: int = 0, setup_maquina: Optional[float] = 0.0)"
+      },
+      "ModelOutput": {
+        "type": "object",
+        "properties": {
+          "completamiento_ordenes": {
+            "type": "number",
+            "default": 0.0,
+            "description": "CompletamientoOrdenes"
+          },
+          "tardanza_total": {
+            "type": "number",
+            "default": 0.0,
+            "description": "TardanzaTotal"
+          },
+          "anticipacion_total": {
+            "type": "number",
+            "default": 0.0,
+            "description": "AnticipacionTotal"
+          },
+          "maxima_tardanza": {
+            "type": "number",
+            "default": 0.0,
+            "description": "M\u00e1ximaTardanza"
+          },
+          "maxima_anticipacion": {
+            "type": "number",
+            "default": 0.0,
+            "description": "M\u00e1ximaAnticipacion"
+          },
+          "total_setup": {
+            "type": "number",
+            "default": 0.0,
+            "description": "TotalSetup"
+          },
+          "total_produccion": {
+            "type": "number",
+            "default": 0.0,
+            "description": "TotalProduccion"
+          },
+          "ordenes_tardias": {
+            "type": "number",
+            "default": 0.0,
+            "description": "OrdenesTardias"
+          },
+          "ordenes_anticipadas": {
+            "type": "number",
+            "default": 0.0,
+            "description": "OrdenesAnticipadas"
+          },
+          "uso_operarios_total": {
+            "type": "number",
+            "default": 0.0,
+            "description": "USoOperariosTotal"
+          },
+          "productividad_operarios": {
+            "type": "number",
+            "default": 0.0,
+            "description": "productividadOperarios"
+          },
+          "plan_inicio": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Plan inicio"
+          },
+          "plan_fin": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Plan fin"
+          },
+          "plan_inicio_preparacion": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Plan inicio preparaci\u00f3n"
+          },
+          "agenda_maquina_ot": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AgendaMaquinaOt"
+            },
+            "default": [],
+            "description": "Agenda de producci\u00f3n"
+          },
+          "agenda_personal": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AgendaPersonal"
+            },
+            "default": [],
+            "description": "Paper Rolls Used"
+          },
+          "error_code": {
+            "type": "string",
+            "description": "Error code"
+          },
+          "error_msg": {
+            "type": "string",
+            "description": "Error message"
+          }
+        },
+        "x-module-name": "app0.app5.model",
+        "description": "Model Output"
+      },
+      "AgendaMaquinaOt": {
+        "type": "object",
+        "required": [
+          "id",
+          "ot_nro",
+          "maquina_nro"
+        ],
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "Id"
+          },
+          "ot_nro": {
+            "type": "string",
+            "description": "Nro OT"
+          },
+          "maquina_nro": {
+            "type": "string",
+            "description": "Nro Maquina"
+          },
+          "hora_inicio": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Desde"
+          },
+          "hora_fin": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Hasta"
+          },
+          "cant_personal": {
+            "type": "number",
+            "description": "Cantidad de Personal"
+          },
+          "producto": {
+            "type": "string",
+            "description": "Producto"
+          },
+          "descripcion": {
+            "type": "string",
+            "default": "",
+            "description": "Descripci\u00f3n"
+          },
+          "is_setup_maquina": {
+            "type": "boolean",
+            "default": false,
+            "description": "Is setup m\u00e1quina?"
+          }
+        },
+        "x-module-name": "app0.app5.model",
+        "description": "AgendaMaquinaOt(id: int, ot_nro: str, maquina_nro: str, hora_inicio: Optional[datetime.datetime] = None, hora_fin: Optional[datetime.datetime] = None, cant_personal: Optional[float] = None, producto: Optional[str] = None, descripcion: Optional[str] = '', is_setup_maquina: Optional[bool] = False)"
+      },
+      "AgendaPersonal": {
+        "type": "object",
+        "required": [
+          "id",
+          "cant_personal"
+        ],
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "Id"
+          },
+          "cant_personal": {
+            "type": "number",
+            "description": "Cantidad de Personal"
+          },
+          "hora_inicio": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Desde"
+          },
+          "hora_fin": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Hasta"
+          }
+        },
+        "x-module-name": "app0.app5.model",
+        "description": "AgendaPersonal(id: int, cant_personal: float, hora_inicio: Optional[datetime.datetime] = None, hora_fin: Optional[datetime.datetime] = None)"
+      },
+      "PlatformFile": {
+        "type": "object",
+        "required": [
+          "bucket",
+          "filename",
+          "size",
+          "src_filename",
+          "object_id"
+        ],
+        "properties": {
+          "bucket": {
+            "type": "string",
+            "description": "Bucket"
+          },
+          "filename": {
+            "type": "string",
+            "description": "Filename"
+          },
+          "size": {
+            "type": "integer",
+            "description": "Size"
+          },
+          "src_filename": {
+            "type": "string",
+            "description": "Source filename"
+          },
+          "object_id": {
+            "type": "string",
+            "description": "Full path filename Object Id"
+          },
+          "creation_date": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Creation Date"
+          }
+        },
+        "x-module-name": "app0.admin.file",
+        "description": "\n    File uploaded\n    "
+      },
+      "ModelJob": {
+        "type": "object",
+        "required": [
+          "creation_date",
+          "creation_user",
+          "number",
+          "status"
+        ],
+        "properties": {
+          "creation_date": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Creation Date"
+          },
+          "creation_user": {
+            "type": "string",
+            "description": "Creation User"
+          },
+          "number": {
+            "type": "string",
+            "description": "Number"
+          },
+          "status": {
+            "type": "string",
+            "description": "Status"
+          },
+          "name": {
+            "type": "string",
+            "default": "",
+            "description": "Name"
+          },
+          "description": {
+            "type": "string",
+            "default": "",
+            "description": "Description"
+          },
+          "model_input": {
+            "$ref": "#/components/schemas/ModelInput",
+            "description": "Model input"
+          },
+          "model_output": {
+            "$ref": "#/components/schemas/ModelOutput",
+            "description": "Model output"
+          },
+          "start_date": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Start Date"
+          },
+          "end_date": {
+            "type": "string",
+            "format": "date-time",
+            "description": "End Date"
+          },
+          "error_text": {
+            "type": "string",
+            "description": "Error text if something wrong"
+          },
+          "result_files": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PlatformFile"
+            },
+            "description": "Result Files"
+          },
+          "origin_id": {
+            "type": "string",
+            "description": "Origin Id"
+          },
+          "origin_desc": {
+            "type": "string",
+            "description": "Origin desc"
+          },
+          "scenario_status": {
+            "type": "string",
+            "description": "Scenario Status"
+          },
+          "id": {
+            "type": "string",
+            "description": "Db id"
+          }
+        },
+        "x-module-name": "app0.app5.model",
+        "description": "\n    Job (Model Run)\n    "
+      },
+      "KpiDataMachine": {
+        "type": "object",
+        "required": [
+          "nbr",
+          "name",
+          "code"
+        ],
+        "properties": {
+          "nbr": {
+            "type": "string",
+            "description": "Number"
+          },
+          "name": {
+            "type": "string",
+            "description": "Name"
+          },
+          "code": {
+            "type": "string",
+            "description": "MQTT Code"
+          },
+          "last_status_date": {
+            "type": "string",
+            "format": "date-time",
+            "description": "last_status_date"
+          },
+          "last_status": {
+            "$ref": "#/components/schemas/IdDescription",
+            "description": "last_status"
+          },
+          "sense_last_1d": {
+            "type": "integer",
+            "default": 0,
+            "description": "sense_last_1d"
+          },
+          "sense_last_7d": {
+            "type": "integer",
+            "default": 0,
+            "description": "sense_last_7d"
+          },
+          "sense_last_15d": {
+            "type": "integer",
+            "default": 0,
+            "description": "sense_last_15d"
+          },
+          "sense_month": {
+            "type": "integer",
+            "default": 0,
+            "description": "sense_month"
+          },
+          "status_list": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/MachineDataStatus"
+            },
+            "default": [],
+            "description": "status"
+          }
+        },
+        "x-module-name": "app0.app5.machine",
+        "description": "\n    KpiDataMachine\n    "
+      },
+      "KpiData": {
+        "type": "object",
+        "properties": {
+          "machines_working": {
+            "type": "integer",
+            "description": "machines_working"
+          },
+          "production": {
+            "type": "integer",
+            "description": "production"
+          },
+          "alerts": {
+            "type": "integer",
+            "description": "alerts"
+          },
+          "machines": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/KpiDataMachine"
+            },
+            "default": [],
+            "description": "machines"
+          }
+        },
+        "x-module-name": "app0.app5.machine",
+        "description": "\n    KpiData\n    "
+      },
+      "Product": {
+        "type": "object",
+        "required": [
+          "name"
+        ],
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Name"
+          },
+          "description": {
+            "type": "string",
+            "default": "",
+            "description": "Descripcion"
+          },
+          "enabled": {
+            "type": "boolean",
+            "default": true,
+            "description": "Enabled?"
+          },
+          "barcode": {
+            "type": "string",
+            "description": "Barcode"
+          },
+          "image": {
+            "type": "string",
+            "description": "Principal app image"
+          },
+          "envases_por_bulto": {
+            "type": "integer",
+            "description": "envases_por_bulto"
+          },
+          "bultos_por_m3": {
+            "type": "integer",
+            "description": "bultos_por_m3"
+          },
+          "envases_por_m3": {
+            "type": "integer",
+            "description": "envases_por_m3"
+          },
+          "cadencia_unidades_h": {
+            "type": "integer",
+            "description": "cadencia_unidades_h"
+          },
+          "peso_envase": {
+            "type": "number",
+            "description": "peso_envase"
+          },
+          "tipo_tapa": {
+            "type": "string",
+            "description": "tipo_tapa"
+          },
+          "maquina": {
+            "type": "string",
+            "description": "maquina"
+          },
+          "maquina_alternativa": {
+            "type": "string",
+            "description": "maquina_alternativa"
+          },
+          "operarios": {
+            "type": "number",
+            "description": "operarios"
+          },
+          "palletizadores": {
+            "type": "number",
+            "description": "palletizadores"
+          },
+          "cavidades_maquina": {
+            "type": "integer",
+            "description": "cavidades_maquina"
+          },
+          "id": {
+            "type": "string",
+            "description": "id"
+          }
+        },
+        "x-module-name": "app0.app5.product",
+        "description": "Product"
+      },
+      "RuntimeAppInfo": {
+        "type": "object",
+        "required": [
+          "servers",
+          "app_config",
+          "effective_events"
+        ],
+        "properties": {
+          "servers": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ServerInfo"
+            }
+          },
+          "app_config": {
+            "$ref": "#/components/schemas/AppConfig"
+          },
+          "effective_events": {
+            "type": "object",
+            "additionalProperties": {
+              "$ref": "#/components/schemas/EventDescriptor"
+            }
+          }
+        },
+        "x-module-name": "hopeit.config_manager",
+        "description": "\n    Application config information associated to servers at runtime\n    "
+      },
+      "ServerInfo": {
+        "type": "object",
+        "required": [
+          "host_name",
+          "pid"
+        ],
+        "properties": {
+          "host_name": {
+            "type": "string"
+          },
+          "pid": {
+            "type": "string"
+          },
+          "url": {
+            "type": "string",
+            "default": "in-process"
+          }
+        },
+        "x-module-name": "hopeit.config_manager",
+        "description": "\n    Server info associated with runtime apps\n    "
+      },
+      "AppConfig": {
+        "type": "object",
+        "required": [
+          "app"
+        ],
+        "properties": {
+          "app": {
+            "$ref": "#/components/schemas/AppDescriptor"
+          },
+          "engine": {
+            "$ref": "#/components/schemas/AppEngineConfig",
+            "default": {
+              "import_modules": null,
+              "read_stream_timeout": 1000,
+              "read_stream_interval": 1000,
+              "default_stream_compression": "lz4",
+              "default_stream_serialization": "json+base64",
+              "track_headers": [
+                "track.request_id",
+                "track.request_ts"
+              ],
+              "cors_origin": null
+            }
+          },
+          "app_connections": {
+            "type": "object",
+            "additionalProperties": {
+              "$ref": "#/components/schemas/AppConnection"
+            },
+            "default": {}
+          },
+          "env": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "object",
+              "additionalProperties": {
+                "anyOf": [
+                  {
+                    "type": "boolean"
+                  },
+                  {
+                    "type": "integer"
+                  },
+                  {
+                    "type": "number"
+                  },
+                  {
+                    "type": "string"
+                  }
+                ]
+              }
+            },
+            "default": {}
+          },
+          "events": {
+            "type": "object",
+            "additionalProperties": {
+              "$ref": "#/components/schemas/EventDescriptor"
+            },
+            "default": {}
+          },
+          "server": {
+            "$ref": "#/components/schemas/ServerConfig"
+          },
+          "plugins": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AppDescriptor"
+            },
+            "default": []
+          },
+          "settings": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "object"
+            },
+            "default": {}
+          },
+          "effective_settings": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "object"
+            }
+          }
+        },
+        "x-module-name": "hopeit.app.config",
+        "description": "\n    App Configuration container\n    "
+      },
+      "AppDescriptor": {
+        "type": "object",
+        "required": [
+          "name",
+          "version"
+        ],
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "version": {
+            "type": "string"
+          }
+        },
+        "x-module-name": "hopeit.app.config",
+        "description": "\n    App descriptor\n    "
+      },
+      "AppEngineConfig": {
+        "type": "object",
+        "properties": {
+          "import_modules": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "read_stream_timeout": {
+            "type": "integer",
+            "default": 1000
+          },
+          "read_stream_interval": {
+            "type": "integer",
+            "default": 1000
+          },
+          "default_stream_compression": {
+            "type": "string",
+            "enum": [
+              "none",
+              "lz4",
+              "lz4:0",
+              "lz4:16",
+              "zip",
+              "zip:1",
+              "zip:9",
+              "gzip",
+              "gzip:1",
+              "gzip:9",
+              "bz2",
+              "bz2:1",
+              "bz2:9",
+              "lzma"
+            ],
+            "x-enum-name": "Compression",
+            "x-module-name": "hopeit.app.config",
+            "default": "lz4"
+          },
+          "default_stream_serialization": {
+            "type": "string",
+            "enum": [
+              "json",
+              "json+base64",
+              "pickle:3",
+              "pickle:4",
+              "pickle:5"
+            ],
+            "x-enum-name": "Serialization",
+            "x-module-name": "hopeit.app.config",
+            "default": "json+base64"
+          },
+          "track_headers": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "default": []
+          },
+          "cors_origin": {
+            "type": "string"
+          }
+        },
+        "x-module-name": "hopeit.app.config",
+        "description": "\n    Engine specific parameters shared among events\n\n    :field import_modules: list of string with the python module names to import to find\n        events and datatype implementations\n    :field read_stream_timeout: timeout in milliseconds to block connection pool when waiting for stream events\n    :field read_stream_interval: delay in milliseconds to wait before attempting a new batch. Use to prevent\n        connection pool to be blocked constantly.\n    :track_headers: list of required X-Track-* headers\n    :cors_origin: allowed CORS origin for web server\n    "
+      },
+      "AppConnection": {
+        "type": "object",
+        "required": [
+          "name",
+          "version"
+        ],
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "version": {
+            "type": "string"
+          },
+          "client": {
+            "type": "string",
+            "default": "<<NO CLIENT CONFIGURED>>"
+          },
+          "settings": {
+            "type": "string"
+          },
+          "plugin_name": {
+            "type": "string"
+          },
+          "plugin_version": {
+            "type": "string"
+          }
+        },
+        "x-module-name": "hopeit.app.config",
+        "description": "\n    AppConnections: metadata to initialize app client in order to connect\n    and issue requests to other running apps\n\n    :field: name, str: target app name to connect to\n    :field: version, str: target app version\n    :field: client, str: hopeit.app.client.Client class implementation, from available client plugins\n    :field: settings, optional str: key under `settings` section of app config containing connection configuration,\n        if not specified, plugin will lookup its default section usually the plugin name. But in case multiple\n        clients need to be configured, this value can be overridden.\n    "
+      },
+      "EventDescriptor": {
+        "type": "object",
+        "required": [
+          "type"
+        ],
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": [
+              "GET",
+              "POST",
+              "STREAM",
+              "SERVICE",
+              "MULTIPART"
+            ],
+            "x-enum-name": "EventType",
+            "x-module-name": "hopeit.app.config"
+          },
+          "plug_mode": {
+            "type": "string",
+            "enum": [
+              "Standalone",
+              "OnApp"
+            ],
+            "x-enum-name": "EventPlugMode",
+            "x-module-name": "hopeit.app.config",
+            "default": "Standalone"
+          },
+          "route": {
+            "type": "string"
+          },
+          "impl": {
+            "type": "string"
+          },
+          "connections": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/EventConnection"
+            },
+            "default": []
+          },
+          "read_stream": {
+            "$ref": "#/components/schemas/ReadStreamDescriptor"
+          },
+          "write_stream": {
+            "$ref": "#/components/schemas/WriteStreamDescriptor"
+          },
+          "auth": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": [
+                "Unsecured",
+                "Basic",
+                "Bearer",
+                "Refresh"
+              ],
+              "x-enum-name": "AuthType",
+              "x-module-name": "hopeit.server.config"
+            },
+            "default": []
+          },
+          "setting_keys": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "default": []
+          },
+          "dataobjects": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "default": []
+          },
+          "group": {
+            "type": "string",
+            "default": "DEFAULT"
+          }
+        },
+        "x-module-name": "hopeit.app.config",
+        "description": "\n    Event Descriptor: configures event implementation\n\n    :field: type, EventType: type of event i.e.: GET, POST, MULTIPART, STREAM, SERVICE\n    :field: plug_mode, EventPlugMode: defines whether an event defined in a plugin is created in the\n        current app (ON_APP) or it will be created in the original plugin (STANDALONE, default)\n    :field: route, optional str: custom route for endpoint. If not specified route will be derived\n        from `/api/app_name/app_version/event_name`\n    :field: impl, optional str: custom event implementation Python module. If not specified, module\n        with same same as event will be imported.\n    :field: connections, list of EventConnection: specifies dependencies on other apps/endpoints,\n        that can be used by client plugins to call events on external apps\n    :field: read_stream, optional ReadStreamDescriptor: specifies source stream to read from.\n        Valid only for STREAM events.\n    :field: write_stream, optional WriteStreamDescriptor: for any type of events, resultant dataobjects will\n        be published to the specified stream.\n    :field: auth, list of AuthType: supported authentication schemas for this event. If not specified\n        application default will be used.\n    :field: setting_keys, list of str: by default EventContext will have access to the settings section\n        with the same name of the event using `settings = context.settings(datatype=MySettingsType)`.\n        In case additional sections are needed to be accessed from\n        EventContext, then a list of setting keys, including the name of the event if needed,\n        can be specified here. Then access to a `custom` key can be done using\n        `custom_settings = context.settings(key=\"customer\", datatype=MyCustomSettingsType)`\n    :field: dataobjects, list of str: list of full qualified dataobject types that this event can process.\n        When not specified, the engine will inspect the module implementation and find all datatypes supported\n        as payload in the functions defined as `__steps__`. In case of generic functions that support\n        `payload: DataObject` argument, then a list of full qualified datatypes must be specified here.\n    :field: group, str: group name, if none is assigned it is automatically assigned as 'DEFAULT'.\n    "
+      },
+      "EventConnection": {
+        "type": "object",
+        "required": [
+          "app_connection",
+          "event",
+          "type"
+        ],
+        "properties": {
+          "app_connection": {
+            "type": "string"
+          },
+          "event": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "GET",
+              "POST"
+            ],
+            "x-enum-name": "EventConnectionType",
+            "x-module-name": "hopeit.app.config"
+          }
+        },
+        "x-module-name": "hopeit.app.config",
+        "description": "\n    EventConnection: describes dependencies on this event when calling\n    event on apps configured in `app_connections` sections. Only events\n    specified are allowed to be invoked using `hopeit.client`\n\n    :field: app_connection, str: key of app entry used in app_connections sections\n    :field: event, str: target event_name to be called\n    :filed: type, EventConnectionType: a valid event connection type, i.e. GET or POST\n    :field: route, optional str: custom route in case event is not attached to default `app/version/event`\n    "
+      },
+      "ReadStreamDescriptor": {
+        "type": "object",
+        "required": [
+          "name",
+          "consumer_group"
+        ],
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "consumer_group": {
+            "type": "string"
+          },
+          "queues": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "default": [
+              "AUTO"
+            ]
+          }
+        },
+        "x-module-name": "hopeit.app.config",
+        "description": "\n    Configuration to read streams\n\n    :field stream_name: str, base stream name to read\n    :consumer_group: str, consumer group to send to stream processing engine to keep track of\n        next messag to consume\n    :queues: List[str], list of queue names to poll from. Each queue act as separate stream\n        with queue name used as stream name suffix, where `AUTO` queue name means to consume\n        events when no queue where specified at publish time, allowing to consume message with different\n        priorities without waiting for all events in the stream to be consumed.\n        Queues specified in this entry will be consumed by this event\n        on each poll cycle, on the order specified. If not present\n        only AUTO queue will be consumed. Take into account that in applications using multiple\n        queue names, in order to ensure all messages are consumed, all queue names should be listed\n        here including AUTO, except that the app is intentionally designed for certain events to\n        consume only from specific queues. This configuration is manual to allow consuming messages\n        produced by external apps.\n    "
+      },
+      "WriteStreamDescriptor": {
+        "type": "object",
+        "required": [
+          "name"
+        ],
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "queues": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "default": [
+              "AUTO"
+            ]
+          },
+          "queue_strategy": {
+            "type": "string",
+            "enum": [
+              "PROPAGATE",
+              "DROP"
+            ],
+            "x-enum-name": "StreamQueueStrategy",
+            "x-module-name": "hopeit.app.config",
+            "default": "DROP"
+          }
+        },
+        "x-module-name": "hopeit.app.config",
+        "description": "\n    Configuration to publish messages to a stream\n\n    :field: name, str: stream name\n    :field: queue, List[str], queue names to be used to publish to stream.\n        Each queue act as separate stream with queue name used as stream name suffix,\n        allowing to publish messages to i.e. a queue that will be consumed with priority,\n        or to multiple queues that will be consumed by different readers.\n        Queue suffix will be propagated through events, allowing an event in a defined queue\n        and successive events in following steps to be consumed using same queue name.\n        Notice that queue will be applied only to messages coming from default queue\n        (where queue is not specified at intial message creation). Messages consumed\n        from other queues will be published using same queue name as they have when consumed.\n    :field queue_stategory: strategy to be used when consuming messages from a stream\n        with a queue name and publishing to another stream. Default is `StreamQueueStrategy.DROP`,\n        so in case of complex stream propagating queue names are configured,\n        `StreamQueueStrategy.PROPAGATE` must be explicitly specified.\n    "
+      },
+      "ServerConfig": {
+        "type": "object",
+        "properties": {
+          "streams": {
+            "$ref": "#/components/schemas/StreamsConfig",
+            "default": {
+              "stream_manager": "hopeit.streams.NoStreamManager",
+              "connection_str": "<<NoStreamManager>>",
+              "delay_auto_start_seconds": 3
+            }
+          },
+          "logging": {
+            "$ref": "#/components/schemas/LoggingConfig",
+            "default": {
+              "log_level": "INFO",
+              "log_path": "logs/"
+            }
+          },
+          "auth": {
+            "$ref": "#/components/schemas/AuthConfig",
+            "default": {
+              "secrets_location": ".secrets/",
+              "auth_passphrase": "",
+              "enabled": false,
+              "create_keys": false,
+              "domain": null,
+              "encryption_algorithm": "RS256",
+              "default_auth_methods": [
+                "Unsecured"
+              ]
+            }
+          },
+          "api": {
+            "$ref": "#/components/schemas/APIConfig",
+            "default": {
+              "docs_path": null
+            }
+          },
+          "engine_version": {
+            "type": "string",
+            "default": "0.19.1"
+          }
+        },
+        "x-module-name": "hopeit.server.config",
+        "description": "\n    Server configuration\n    "
+      },
+      "StreamsConfig": {
+        "type": "object",
+        "properties": {
+          "stream_manager": {
+            "type": "string",
+            "default": "hopeit.streams.NoStreamManager"
+          },
+          "connection_str": {
+            "type": "string",
+            "default": "<<NoStreamManager>>"
+          },
+          "delay_auto_start_seconds": {
+            "type": "integer",
+            "default": 3
+          }
+        },
+        "x-module-name": "hopeit.server.config",
+        "description": "\n    :field connection_str: str, url to connect to streams server: i.e. redis://localhost:6379\n    "
+      },
+      "LoggingConfig": {
+        "type": "object",
+        "properties": {
+          "log_level": {
+            "type": "string",
+            "default": "INFO"
+          },
+          "log_path": {
+            "type": "string",
+            "default": "logs/"
+          }
+        },
+        "x-module-name": "hopeit.server.config",
+        "description": "LoggingConfig(log_level: str = 'INFO', log_path: str = 'logs/')"
+      },
+      "AuthConfig": {
+        "type": "object",
+        "required": [
+          "secrets_location",
+          "auth_passphrase"
+        ],
+        "properties": {
+          "secrets_location": {
+            "type": "string"
+          },
+          "auth_passphrase": {
+            "type": "string"
+          },
+          "enabled": {
+            "type": "boolean",
+            "default": true
+          },
+          "create_keys": {
+            "type": "boolean",
+            "default": false
+          },
+          "domain": {
+            "type": "string"
+          },
+          "encryption_algorithm": {
+            "type": "string",
+            "default": "RS256"
+          },
+          "default_auth_methods": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": [
+                "Unsecured",
+                "Basic",
+                "Bearer",
+                "Refresh"
+              ],
+              "x-enum-name": "AuthType",
+              "x-module-name": "hopeit.server.config"
+            },
+            "default": []
+          }
+        },
+        "x-module-name": "hopeit.server.config",
+        "description": "\n    Server configuration to handle authorization tokens\n    "
+      },
+      "APIConfig": {
+        "type": "object",
+        "properties": {
+          "docs_path": {
+            "type": "string"
+          }
+        },
+        "x-module-name": "hopeit.server.config",
+        "description": "\n    Config for Open API docs page\n    "
+      },
+      "RuntimeApps": {
+        "type": "object",
+        "required": [
+          "apps"
+        ],
+        "properties": {
+          "apps": {
+            "type": "object",
+            "additionalProperties": {
+              "$ref": "#/components/schemas/RuntimeAppInfo"
+            }
+          },
+          "server_status": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string",
+              "enum": [
+                "ALIVE",
+                "ERROR"
+              ],
+              "x-enum-name": "ServerStatus",
+              "x-module-name": "hopeit.config_manager"
+            },
+            "default": {}
+          }
+        },
+        "x-module-name": "hopeit.config_manager",
+        "description": "\n    Combined App Config and Server Status information for running apps\n    "
+      }
+    },
+    "securitySchemes": {
+      "auth.basic": {
+        "type": "http",
+        "scheme": "basic"
+      },
+      "auth.bearer": {
+        "type": "http",
+        "scheme": "bearer"
+      },
+      "platform_auth.1x0.refresh": {
+        "type": "apiKey",
+        "in": "cookie",
+        "name": "platform_auth.1x0.refresh"
+      }
+    }
+  },
+  "security": []
+}

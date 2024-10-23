@@ -1,0 +1,242 @@
+// MongoDB Playground
+// Select the database to use.
+// delete by id
+use('puedb');
+db['app3.job'].deleteOne(
+  { "_id": ObjectId("6363b7239cc470a7121c4ab2")}
+)
+// delete all
+use('puedb');
+db['app3.job_log'].deleteMany(
+  { }
+)
+
+// delete all app2
+use('puedb');
+db['app2.job'].deleteMany(
+  { }
+)
+use('puedb');
+db['app2.job_log'].deleteMany(
+  { }
+)
+use('puedb');
+db['app2.scenario'].deleteMany(
+  { }
+)
+// delete all app3
+use('puedb');
+db['app3.job'].deleteMany(
+  { }
+)
+use('puedb');
+db['app3.job_log'].deleteMany(
+  { }
+)
+use('puedb');
+db['app3.scenario'].deleteMany(
+  { }
+)
+
+use('puedb');
+db['app0.app'].findOne({'url': {'$regex': /app2$/}})
+
+use('puedb');
+db['app5.sensor_machine'].countDocuments({'processed': {'$exists': false}})
+
+use('puedb');
+db['app5.sensor_machine'].countDocuments({'processed': {'$eq': false}})
+
+use('puedb');
+db['app5.sensor_machine'].countDocuments({'processed': {'$eq': true}})
+
+use('puedb');
+db['app5.sensor_machine'].aggregate({"_id.$oid": {"$ne": "id"}})
+
+use('puedb');
+db['app5.sensor_machine'].aggregate([
+  {
+    $match: {
+      $expr: {
+        $ne: [
+          { $toObjectId: "id" },
+          "_id.$oid"
+        ]
+      }
+    }
+  }
+])
+
+use('puedb');
+db['app5.sensor_machine'].countDocuments({'fixed': {'$exists': false}})
+
+use('puedb');
+db['app5.sensor_machine'].countDocuments({'processed': {'$eq': false}})
+
+use('puedb');
+db['app5.machine'].countDocuments({'last_status.value': {'$eq': 'EnProducción'}})
+
+use('puedb');
+db['app5.machine'].countDocuments({'last_status.value': {'$eq': 'EnProducción'}})
+
+use('puedb');
+db['app5.product_metric'].countDocuments({'metric_date': {'$gte': '20230614', '$lte': '20230630'}})
+
+use('puedb');
+db['app5.product_metric'].aggregate([
+  // Stage 1: Filter
+  {
+     $match: { 'metric_date': {'$gte': '20230614', '$lte': '20230630'} }
+  },
+  // Stage 2: Group remaining documents by pizza name and calculate total quantity
+  {
+     $group: { _id: "$product", totalQuantity: { $sum: "$metric_qty" } }
+  }
+])
+
+use('puedb');
+db['app5.product_metric'].aggregate([
+  // Stage 1: Filter
+  {
+     $match: { 'metric_date': {'$gte': '20230614', '$lte': '20230630'} }
+  },
+  // Stage 2: Group remaining documents by pizza name and calculate total quantity
+  {
+     $group: { _id: {"date": "$metric_date",
+     "metric": "$metric"}, totalQuantity: { $sum: "$metric_qty" } }
+  }
+])
+
+use('puedb');
+db['app5.machine_metric'].aggregate([
+  // Stage 1: Filter
+  {
+     $match: {'metric_date': {'$gte': '20230614', '$lte': '20230630'},
+              'metric': 'estado',
+              'machine': 'M17'}
+  },
+  // Stage 2: Group remaining documents by pizza name and calculate total quantity
+  {
+     $group: {_id: "$metric_value", total: { $sum: "$metric_qty" }}
+  }
+])
+
+use('puedb');
+db['app5.machine_metric'].aggregate([
+  // Stage 1: Filter
+  {
+     $match: {'metric_date': {'$gte': '20230614', '$lte': '20230630'},
+              'metric': 'estado',
+              'machine': 'M17'}
+  },
+  // Stage 2: Group remaining documents by pizza name and calculate total quantity
+  {
+     $group: {_id: {"date": "$metric_date",
+                    "metric": "$metric_value"},
+              total: { $sum: "$metric_qty" }}
+  }
+])
+
+use('puedb');
+db['app5.sensor_machine'].find(
+  {'sense_time': {'$regex': '^2023-08-08'},
+   'machine': 'M18'})
+
+// clean app5 sensors
+// docs older than 15 days (2023-08-01T00:00:00.000000-03:00)
+use('puedb');
+db['app5.sensor_machine'].countDocuments({
+  "sense_time": {$lt: "2023-08-01T00:00:00.000000-03:00"}
+})
+
+use('puedb');
+db['app5.sensor_machine'].deleteMany({
+  "sense_time": {$lt: "2023-08-01T00:00:00.000000-03:00"}
+})
+// fix TiempoDeCiclo
+use('puedb');
+db['app5.sensor_machine'].find({
+  "metric": "tiempo_ciclo"
+})
+use('puedb');
+db['app5.sensor_machine'].find({
+  "valstr": "TiempoDeCiclo"
+})
+use('puedb');
+db['app5.sensor_machine'].find({
+  'metric': 'tiempo_ciclo',
+  'valstr': {$exists: false}
+})
+use('puedb');
+db['app5.sensor_machine'].updateMany(
+  { "valstr": "TiempoDeCiclo" },
+  { $set: { "metric": "tiempo_ciclo",
+            "valflt": 1.1,
+            "processed": false}}
+)
+// delete machine_metric con metric_value 'TiempoDeCiclo'
+use('puedb');
+db['app5.machine_metric'].deleteMany({
+  "metric_value": "TiempoDeCiclo"
+})
+// delete machine_metric and product_metric
+use('puedb');
+db['app5.product_metric'].deleteMany({})
+use('puedb');
+db['app5.machine_metric'].deleteMany({})
+// reprocess everything
+use('puedb');
+db['app5.sensor_machine'].updateMany(
+  {},
+  { $set: { "processed": false}}
+)
+
+use('puedb');
+db['app5.sensor_machine'].countDocuments({
+  "processed": false
+})
+use('puedb');
+db['app5.sensor_machine'].countDocuments({
+  "processed": true
+})
+use('puedb');
+db['app5.product_metric'].countDocuments({})
+use('puedb');
+db['app5.machine_metric'].countDocuments({})
+
+// analizando M27 día 27/08/2023
+// sensados
+use('puedb');
+db['app5.sensor_machine'].find(
+  {sense_time: {$regex: '^2023-08-27'},
+   machine: 'M27'},
+)
+// 
+use('puedb');
+db['app5.machine_metric'].find(
+  {metric_date: {$gte: '20230827', $lte: '20230827'},
+   machine: 'M27'},
+)
+
+use('puedb');
+db['app5.product_metric'].countDocuments(
+  {metric: 'tiempo_ciclo'}
+)
+
+use('puedb');
+db['app5.machine_metric'].aggregate([
+  {
+     $match: {'metric_date': {'$gte': '20230808', '$lte': '20230907'},
+              'metric': 'estado',
+              'machine': 'M17'}
+  },
+  {
+     $group: {_id: "$metric_value",
+              total: { $sum: "$metric_qty" }}
+  }
+])
+
+use('puedb');
+db['app5.job'].find({
+  "id": "65099e0d48e81d8407085001"
+})
